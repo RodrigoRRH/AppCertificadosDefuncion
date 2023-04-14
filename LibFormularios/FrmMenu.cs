@@ -80,7 +80,8 @@ namespace LibFormularios
         {
             //FrmActaEntrega frm = new FrmActaEntrega();
             //AbrirSubForm(frm);// como colocar un label en cualquier posicion dentro de un flowlayoutpanel c# windows forms
-            AbrirFormulario(new FrmActaEntrega());
+            
+            //AbrirFormulario(new FrmActaEntrega());
         }
     }
 }

@@ -51,5 +51,5 @@ D:\Practica_C#\AppCertificadosDefuncion\LibFormularios\obj\Debug\LibFormularios.
 D:\Practica_C#\AppCertificadosDefuncion\LibFormularios\obj\Debug\LibFormularios.rbfAplicacion.resources
 D:\Practica_C#\AppCertificadosDefuncion\LibFormularios\obj\Debug\LibFormularios.PanelCargaDatos.resources
 D:\Practica_C#\AppCertificadosDefuncion\LibFormularios\obj\Debug\LibFormularios.FrmCargarPersonal.resources
-D:\Practica_C#\AppCertificadosDefuncion\LibFormularios\obj\Debug\LibFormularios.FrmActaEntrega.resources
-D:\Practica_C#\AppCertificadosDefuncion\LibFormularios\obj\Debug\LibFormularios.FrmActa.resources
+D:\Practica_C#\AppCertificadosDefuncion\LibFormularios\bin\Debug\LibFormularios.dll.config
+D:\Practica_C#\AppCertificadosDefuncion\LibFormularios\obj\Debug\LibFormularios.FrmTest.resources

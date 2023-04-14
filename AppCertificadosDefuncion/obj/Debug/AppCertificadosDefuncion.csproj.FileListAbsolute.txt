@@ -37,7 +37,4 @@ D:\Practica_C#\AppCertificadosDefuncion\AppCertificadosDefuncion\bin\Debug\LibFo
 D:\Practica_C#\AppCertificadosDefuncion\AppCertificadosDefuncion\bin\Debug\DevExpress.XtraNavBar.v22.2.xml
 D:\Practica_C#\AppCertificadosDefuncion\AppCertificadosDefuncion\bin\Debug\LibClases.dll
 D:\Practica_C#\AppCertificadosDefuncion\AppCertificadosDefuncion\bin\Debug\LibClases.pdb
-D:\Practica_C#\AppCertificadosDefuncion\AppCertificadosDefuncion\bin\Debug\DevExpress.XtraTreeList.v22.2.dll
-D:\Practica_C#\AppCertificadosDefuncion\AppCertificadosDefuncion\bin\Debug\DevExpress.XtraLayout.v22.2.dll
-D:\Practica_C#\AppCertificadosDefuncion\AppCertificadosDefuncion\bin\Debug\DevExpress.XtraTreeList.v22.2.xml
-D:\Practica_C#\AppCertificadosDefuncion\AppCertificadosDefuncion\bin\Debug\DevExpress.XtraLayout.v22.2.xml
+D:\Practica_C#\AppCertificadosDefuncion\AppCertificadosDefuncion\bin\Debug\LibFormularios.dll.config
