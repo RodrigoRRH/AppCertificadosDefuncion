@@ -1,11 +1,4 @@
-﻿using DevExpress.XtraBars;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Windows.Forms;
 
 namespace LibFormularios
@@ -78,9 +71,11 @@ namespace LibFormularios
 
         private void itmActaEntrega_Click(object sender, EventArgs e)
         {
+            AbrirFormulario(new FrmActaEntrega());
+
             //FrmActaEntrega frm = new FrmActaEntrega();
             //AbrirSubForm(frm);// como colocar un label en cualquier posicion dentro de un flowlayoutpanel c# windows forms
-            
+
             //AbrirFormulario(new FrmActaEntrega());
         }
     }

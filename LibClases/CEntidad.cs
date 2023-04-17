@@ -12,7 +12,7 @@ namespace LibClases
     public abstract class CEntidad
     {
         // ============================ Atributos ==============================
-        private CConexion aConexion;
+        protected CConexion aConexion;
         private string aNombreTabla;
         string[] aNombres = null; //-- nombres de los campos de la tabla
         string[] aValores = null; //-- valores de los campos de la tabla

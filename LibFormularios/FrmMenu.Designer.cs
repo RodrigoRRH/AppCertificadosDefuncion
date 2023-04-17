@@ -50,9 +50,9 @@
             // cntInicio
             // 
             this.cntInicio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cntInicio.Location = new System.Drawing.Point(260, 31);
+            this.cntInicio.Location = new System.Drawing.Point(239, 31);
             this.cntInicio.Name = "cntInicio";
-            this.cntInicio.Size = new System.Drawing.Size(754, 542);
+            this.cntInicio.Size = new System.Drawing.Size(817, 603);
             this.cntInicio.TabIndex = 0;
             // 
             // accordionControl1
@@ -66,7 +66,7 @@
             this.accordionControl1.Location = new System.Drawing.Point(0, 31);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            this.accordionControl1.Size = new System.Drawing.Size(260, 542);
+            this.accordionControl1.Size = new System.Drawing.Size(239, 603);
             this.accordionControl1.TabIndex = 1;
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -107,7 +107,7 @@
             this.fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
             this.fluentDesignFormControl1.Manager = this.fluentFormDefaultManager1;
             this.fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            this.fluentDesignFormControl1.Size = new System.Drawing.Size(1014, 31);
+            this.fluentDesignFormControl1.Size = new System.Drawing.Size(1056, 31);
             this.fluentDesignFormControl1.TabIndex = 2;
             this.fluentDesignFormControl1.TabStop = false;
             // 
@@ -144,14 +144,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1014, 573);
+            this.ClientSize = new System.Drawing.Size(1056, 634);
             this.ControlContainer = this.cntInicio;
             this.Controls.Add(this.cntInicio);
             this.Controls.Add(this.accordionControl1);
             this.Controls.Add(this.fluentDesignFormControl1);
             this.FluentDesignFormControl = this.fluentDesignFormControl1;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "FrmMenu";
             this.NavigationControl = this.accordionControl1;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmMenu";
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).EndInit();

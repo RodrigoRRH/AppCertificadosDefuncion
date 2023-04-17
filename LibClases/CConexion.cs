@@ -120,5 +120,30 @@ namespace LibClases
 
             return resultado;
         }
+
+        // -- Metodo para cargar las MicroRedes a nuestro combobox
+        public DataSet CargarMicrored()
+        {
+            string CadenaConsulta = "select distinct Codigo_MicroRed, MicroRed from MAESTRO_HIS_ESTABLECIMIENTO where Red = 'CUSCO NORTE'";
+            // Ejecutar la consulta
+            aAdaptador.SelectCommand = new SqlCommand(CadenaConsulta, aConexion);
+            aAdaptador.SelectCommand.CommandTimeout = 1000;
+            aDatos = new DataSet();
+            aAdaptador.Fill(aDatos);
+            return aDatos;
+        }
+
+        // -- Metodo para cargar los establecimientos a nuestro combobox, depende de la microred
+        public DataSet CargarEstablecimiento(string MicroRed)
+        {
+            string CadenaConsulta = "select Id_Establecimiento, Nombre_Establecimiento as Establecimiento, Codigo_MicroRed from MAESTRO_HIS_ESTABLECIMIENTO where Red = 'CUSCO NORTE' and Codigo_MicroRed = '" + MicroRed + "' order by MicroRed";
+            // Ejecutar la consulta
+            aAdaptador.SelectCommand = new SqlCommand(CadenaConsulta, aConexion);
+            //aAdaptador.SelectCommand.Parameters.AddWithValue("MicroRed", SqlDbType.VarChar).Value = MicroRed;
+            aAdaptador.SelectCommand.CommandTimeout = 1000;
+            aDatos = new DataSet();
+            aAdaptador.Fill(aDatos);
+            return aDatos;
+        }
     }
 }

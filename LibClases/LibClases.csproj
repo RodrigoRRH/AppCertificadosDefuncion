@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CActaEntrega.cs" />
     <Compile Include="CCertificado.cs" />
     <Compile Include="CConexion.cs" />
     <Compile Include="CEntidad.cs" />
