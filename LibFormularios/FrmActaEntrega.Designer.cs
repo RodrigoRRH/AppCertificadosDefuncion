@@ -36,7 +36,7 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.dtpHora = new System.Windows.Forms.DateTimePicker();
             this.gboEncargado = new System.Windows.Forms.GroupBox();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnBuscarEncargado = new DevExpress.XtraEditors.SimpleButton();
             this.txtApellidosEncargado = new System.Windows.Forms.TextBox();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.txtNombresEncargado = new System.Windows.Forms.TextBox();
@@ -45,7 +45,7 @@
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.btnTest = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnBuscarPersonal = new DevExpress.XtraEditors.SimpleButton();
             this.txtApellidosPersonal = new System.Windows.Forms.TextBox();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.txtNombresPersonal = new System.Windows.Forms.TextBox();
@@ -68,6 +68,7 @@
             // btnNuevo
             // 
             this.btnNuevo.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNuevo.ImageOptions.SvgImage")));
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // panTop
             // 
@@ -113,7 +114,7 @@
             // 
             this.txtCodigoActa.Location = new System.Drawing.Point(104, 41);
             this.txtCodigoActa.Name = "txtCodigoActa";
-            this.txtCodigoActa.Size = new System.Drawing.Size(100, 21);
+            this.txtCodigoActa.Size = new System.Drawing.Size(133, 21);
             this.txtCodigoActa.TabIndex = 1;
             // 
             // labelControl2
@@ -149,7 +150,7 @@
             // 
             // gboEncargado
             // 
-            this.gboEncargado.Controls.Add(this.simpleButton1);
+            this.gboEncargado.Controls.Add(this.btnBuscarEncargado);
             this.gboEncargado.Controls.Add(this.txtApellidosEncargado);
             this.gboEncargado.Controls.Add(this.labelControl6);
             this.gboEncargado.Controls.Add(this.txtNombresEncargado);
@@ -163,13 +164,14 @@
             this.gboEncargado.TabStop = false;
             this.gboEncargado.Text = "Datos Encargado";
             // 
-            // simpleButton1
+            // btnBuscarEncargado
             // 
-            this.simpleButton1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
-            this.simpleButton1.Location = new System.Drawing.Point(267, 10);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(40, 41);
-            this.simpleButton1.TabIndex = 9;
+            this.btnBuscarEncargado.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBuscarEncargado.ImageOptions.SvgImage")));
+            this.btnBuscarEncargado.Location = new System.Drawing.Point(267, 10);
+            this.btnBuscarEncargado.Name = "btnBuscarEncargado";
+            this.btnBuscarEncargado.Size = new System.Drawing.Size(40, 41);
+            this.btnBuscarEncargado.TabIndex = 9;
+            this.btnBuscarEncargado.Click += new System.EventHandler(this.btnBuscarEncargado_Click);
             // 
             // txtApellidosEncargado
             // 
@@ -227,7 +229,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.simpleButton2);
+            this.groupBox1.Controls.Add(this.btnBuscarPersonal);
             this.groupBox1.Controls.Add(this.txtApellidosPersonal);
             this.groupBox1.Controls.Add(this.labelControl7);
             this.groupBox1.Controls.Add(this.txtNombresPersonal);
@@ -241,13 +243,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Personal Salud";
             // 
-            // simpleButton2
+            // btnBuscarPersonal
             // 
-            this.simpleButton2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton2.ImageOptions.SvgImage")));
-            this.simpleButton2.Location = new System.Drawing.Point(267, 10);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(40, 41);
-            this.simpleButton2.TabIndex = 9;
+            this.btnBuscarPersonal.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBuscarPersonal.ImageOptions.SvgImage")));
+            this.btnBuscarPersonal.Location = new System.Drawing.Point(267, 10);
+            this.btnBuscarPersonal.Name = "btnBuscarPersonal";
+            this.btnBuscarPersonal.Size = new System.Drawing.Size(40, 41);
+            this.btnBuscarPersonal.TabIndex = 9;
+            this.btnBuscarPersonal.Click += new System.EventHandler(this.btnBuscarPersonal_Click);
             // 
             // txtApellidosPersonal
             // 
@@ -341,14 +344,14 @@
         private System.Windows.Forms.TextBox txtCodigoActa;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton btnBuscarPersonal;
         private System.Windows.Forms.TextBox txtApellidosPersonal;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private System.Windows.Forms.TextBox txtNombresPersonal;
         private System.Windows.Forms.TextBox txtDocumentoPersonal;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton btnBuscarEncargado;
         private System.Windows.Forms.TextBox txtApellidosEncargado;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private System.Windows.Forms.TextBox txtNombresEncargado;

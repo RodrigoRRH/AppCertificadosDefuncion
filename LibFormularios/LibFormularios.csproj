@@ -87,6 +87,18 @@
     <Compile Include="FrmActaRecepcion.Designer.cs">
       <DependentUpon>FrmActaRecepcion.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmBusquedaEncargado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBusquedaEncargado.Designer.cs">
+      <DependentUpon>FrmBusquedaEncargado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmBusquedaPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBusquedaPersonal.Designer.cs">
+      <DependentUpon>FrmBusquedaPersonal.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCargarDatos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +172,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmActaRecepcion.resx">
       <DependentUpon>FrmActaRecepcion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmBusquedaEncargado.resx">
+      <DependentUpon>FrmBusquedaEncargado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmBusquedaPersonal.resx">
+      <DependentUpon>FrmBusquedaPersonal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCargarDatos.resx">
       <DependentUpon>FrmCargarDatos.cs</DependentUpon>

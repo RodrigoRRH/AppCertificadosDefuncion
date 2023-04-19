@@ -41,10 +41,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(42, 118);
+            this.textBox1.Location = new System.Drawing.Point(22, 110);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(568, 302);
+            this.textBox1.Size = new System.Drawing.Size(608, 302);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "\r\n\r\nSe entrega certificados de defunción manual con números: \r\n\r\n\r\nPara la Micror" +
     "ed:\r\n\r\n\r\nPara el Establecimiento de Salud:\r\n\r\n\r\nFecha:\r\n\r\n\r\nHora:\r\n\r\n\r\nEncargado" +
@@ -53,67 +53,69 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(287, 42);
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Myanmar Text", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(239, 34);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(92, 13);
+            this.labelControl1.Size = new System.Drawing.Size(188, 37);
             this.labelControl1.TabIndex = 1;
             this.labelControl1.Text = "ACTA DE ENTREGA";
             // 
             // txtCodigosCD
             // 
-            this.txtCodigosCD.Location = new System.Drawing.Point(340, 140);
+            this.txtCodigosCD.Location = new System.Drawing.Point(320, 132);
             this.txtCodigosCD.Name = "txtCodigosCD";
-            this.txtCodigosCD.Size = new System.Drawing.Size(218, 21);
+            this.txtCodigosCD.Size = new System.Drawing.Size(278, 21);
             this.txtCodigosCD.TabIndex = 2;
             // 
             // txtMicroRed
             // 
-            this.txtMicroRed.Location = new System.Drawing.Point(340, 182);
+            this.txtMicroRed.Location = new System.Drawing.Point(320, 174);
             this.txtMicroRed.Name = "txtMicroRed";
-            this.txtMicroRed.Size = new System.Drawing.Size(218, 21);
+            this.txtMicroRed.Size = new System.Drawing.Size(278, 21);
             this.txtMicroRed.TabIndex = 3;
             // 
             // txtEstablecimiento
             // 
-            this.txtEstablecimiento.Location = new System.Drawing.Point(340, 221);
+            this.txtEstablecimiento.Location = new System.Drawing.Point(320, 213);
             this.txtEstablecimiento.Name = "txtEstablecimiento";
-            this.txtEstablecimiento.Size = new System.Drawing.Size(218, 21);
+            this.txtEstablecimiento.Size = new System.Drawing.Size(278, 21);
             this.txtEstablecimiento.TabIndex = 4;
             // 
             // txtEncargado
             // 
-            this.txtEncargado.Location = new System.Drawing.Point(340, 340);
+            this.txtEncargado.Location = new System.Drawing.Point(320, 332);
             this.txtEncargado.Name = "txtEncargado";
-            this.txtEncargado.Size = new System.Drawing.Size(218, 21);
+            this.txtEncargado.Size = new System.Drawing.Size(278, 21);
             this.txtEncargado.TabIndex = 5;
             // 
             // txtPersonalSalud
             // 
-            this.txtPersonalSalud.Location = new System.Drawing.Point(340, 379);
+            this.txtPersonalSalud.Location = new System.Drawing.Point(320, 370);
             this.txtPersonalSalud.Name = "txtPersonalSalud";
-            this.txtPersonalSalud.Size = new System.Drawing.Size(218, 21);
+            this.txtPersonalSalud.Size = new System.Drawing.Size(278, 21);
             this.txtPersonalSalud.TabIndex = 6;
             // 
             // dtpFecha
             // 
-            this.dtpFecha.Location = new System.Drawing.Point(340, 260);
+            this.dtpFecha.Location = new System.Drawing.Point(320, 252);
             this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(200, 21);
+            this.dtpFecha.Size = new System.Drawing.Size(278, 21);
             this.dtpFecha.TabIndex = 7;
             // 
             // dtpHora
             // 
             this.dtpHora.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpHora.Location = new System.Drawing.Point(340, 301);
+            this.dtpHora.Location = new System.Drawing.Point(320, 293);
             this.dtpHora.Name = "dtpHora";
-            this.dtpHora.Size = new System.Drawing.Size(200, 21);
+            this.dtpHora.Size = new System.Drawing.Size(95, 21);
             this.dtpHora.TabIndex = 8;
             // 
             // FrmConfirmartTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(655, 514);
+            this.ClientSize = new System.Drawing.Size(668, 447);
             this.Controls.Add(this.dtpHora);
             this.Controls.Add(this.dtpFecha);
             this.Controls.Add(this.txtPersonalSalud);

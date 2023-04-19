@@ -14,6 +14,7 @@ namespace LibFormularios
     public partial class FrmActaEntrega : FrmActa
     {
         CConexion aConexion = new CConexion();
+        CActaEntrega aActaEntrega = new CActaEntrega();
 
         DataTable dt = new DataTable();
         DataTable dt1 = new DataTable();
@@ -54,8 +55,8 @@ namespace LibFormularios
             frmConfirmartTest.txtEstablecimiento.Text = cboEstablecimiento.Text;
             frmConfirmartTest.dtpFecha.Value = dtpFecha.Value;
             frmConfirmartTest.dtpHora.Value = dtpHora.Value;
-            frmConfirmartTest.txtEncargado.Text = txtDocumentoEncargado.Text;
-            frmConfirmartTest.txtPersonalSalud.Text = txtDocumentoPersonal.Text;
+            frmConfirmartTest.txtEncargado.Text = txtDocumentoEncargado.Text + ' ' + txtNombresEncargado.Text + ' ' + txtApellidosEncargado.Text;
+            frmConfirmartTest.txtPersonalSalud.Text = txtDocumentoPersonal.Text + ' ' + txtNombresPersonal.Text + ' ' + txtApellidosPersonal.Text;
 
 
             // Muestra el formulario de informe
@@ -94,6 +95,46 @@ namespace LibFormularios
                 string microred = cboMicroRed.SelectedValue.ToString();
                 CargarCboEstablecimiento(microred);
             }
+        }
+
+        private void btnBuscarEncargado_Click(object sender, EventArgs e)
+        {
+            FrmBusquedaEncargado busquedaEncargado = new FrmBusquedaEncargado(aActaEntrega.MostrarPersonal());
+            busquedaEncargado.ShowDialog();
+
+            //-- Consulta valor devuelto
+            if (busquedaEncargado.Numero_Documento != "")
+            {
+                txtDocumentoEncargado.Text = busquedaEncargado.Numero_Documento;
+                txtNombresEncargado.Text = busquedaEncargado.Nombres;
+                txtApellidosEncargado.Text = busquedaEncargado.Apellidos;
+            }
+        }
+
+        private void btnBuscarPersonal_Click(object sender, EventArgs e)
+        {
+            FrmBusquedaPersonal busquedaPersonal = new FrmBusquedaPersonal(aActaEntrega.MostrarPersonal());
+            busquedaPersonal.ShowDialog();
+
+            //-- Consulta valor devuelto
+            if (busquedaPersonal.Numero_Documento != "")
+            {
+                txtDocumentoPersonal.Text = busquedaPersonal.Numero_Documento;
+                txtNombresPersonal.Text = busquedaPersonal.Nombres;
+                txtApellidosPersonal.Text = busquedaPersonal.Apellidos;
+            }
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            //txtCodigoActa.Text = aActaEntrega.generarCodigo();
+
+            //txtCodigoActa.Text = (aActaEntrega.obtenerUltimoCodigo())[0];
+
+            //txtCodigoActa.Text = aActaEntrega.GenerarCodigoAutonumerico(1000);
+
+            string [] list = { "ACT-ENT-2023-001-001", "ACT-ENT-2023-002-001", "ACT-ENT-2024-001-001"};
+            txtCodigoActa.Text = list.Max();
         }
     }
 }
