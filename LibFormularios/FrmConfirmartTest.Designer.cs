@@ -37,6 +37,8 @@
             this.txtPersonalSalud = new System.Windows.Forms.TextBox();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.dtpHora = new System.Windows.Forms.DateTimePicker();
+            this.txtFecha = new System.Windows.Forms.TextBox();
+            this.txtHora = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -111,11 +113,27 @@
             this.dtpHora.Size = new System.Drawing.Size(95, 21);
             this.dtpHora.TabIndex = 8;
             // 
+            // txtFecha
+            // 
+            this.txtFecha.Location = new System.Drawing.Point(102, 77);
+            this.txtFecha.Name = "txtFecha";
+            this.txtFecha.Size = new System.Drawing.Size(141, 21);
+            this.txtFecha.TabIndex = 9;
+            // 
+            // txtHora
+            // 
+            this.txtHora.Location = new System.Drawing.Point(383, 77);
+            this.txtHora.Name = "txtHora";
+            this.txtHora.Size = new System.Drawing.Size(142, 21);
+            this.txtHora.TabIndex = 10;
+            // 
             // FrmConfirmartTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(668, 447);
+            this.Controls.Add(this.txtHora);
+            this.Controls.Add(this.txtFecha);
             this.Controls.Add(this.dtpHora);
             this.Controls.Add(this.dtpFecha);
             this.Controls.Add(this.txtPersonalSalud);
@@ -143,5 +161,7 @@
         public System.Windows.Forms.TextBox txtPersonalSalud;
         public System.Windows.Forms.DateTimePicker dtpFecha;
         public System.Windows.Forms.DateTimePicker dtpHora;
+        public System.Windows.Forms.TextBox txtFecha;
+        public System.Windows.Forms.TextBox txtHora;
     }
 }

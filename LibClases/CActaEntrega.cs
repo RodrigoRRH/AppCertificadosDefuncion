@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace LibClases
 {
@@ -47,26 +49,9 @@ namespace LibClases
             return aConexion.Datos.Tables[0];
         }
 
-        // -- Funcion para generar un codigo autonumerico de la forma "AE-001-00001-2023"
-        public string GenerarCodigoAutonumerico(int entero)
-        {
-            // Obtener el año actual
-            int year = DateTime.Now.Year;
-
-            // Obtener la serie y correlativo correspondientes al entero recibido
-            int serie = (entero - 1) / 999 + 1;
-            int correlativo = (entero - 1) % 999 + 1;
-
-            // Generar el nuevo código autonumérico
-            string nuevaSerie = serie.ToString("D3");
-            string nuevoCorrelativo = correlativo.ToString("D3");
-            string nuevoCodigo = $"AE-{nuevaSerie}-{nuevoCorrelativo}-{year}";
-
-            return nuevoCodigo;
-        }
-
+        // -- Funcion para generar un codigo autonumerico de la forma "ACT-ENT-2023-001-001"
         //------------------------------------------------------
-        public string generarCodigo()
+        public string GenerarCodigoAutonumerico()
         {
             // Obtener el último código generado
             string ultimoCodigo = obtenerUltimoCodigo();
@@ -98,9 +83,6 @@ namespace LibClases
             // Concatenar los valores de serie, correlativo y año en el formato deseado
             string nuevoCodigo = string.Format("ACT-ENT-{0}-{1}-{2:D3}",anio, serie, correlativo);
 
-            // Guardar el nuevo código en la base de datos o en un archivo
-            guardarCodigo(nuevoCodigo);
-
             return nuevoCodigo;
         }
 
@@ -111,18 +93,26 @@ namespace LibClases
             return numeroSerie.ToString("D3");
         }
 
-        private string obtenerUltimoCodigo()
+        public string obtenerUltimoCodigo()
         {
-            // Aquí puedes escribir el código para obtener el último código generado
-            // Puedes utilizar una base de datos, un archivo de texto o cualquier otro medio de almacenamiento de datos para esto.
-            // En este ejemplo, simplemente devolvemos un valor fijo.
-            return "ACT-ENT-2023-002-001"; //ACT-ENT-2023-001-001
-        }
+            // Recuperamos el ultimo codigo de la tabla "Acta_Entrega" de la base de datos
+            // Para ello hacemos uso del store procedure
 
-        private void guardarCodigo(string nuevoCodigo)
-        {
-            // Aquí puedes escribir el código para guardar el nuevo código generado
-            // Puedes utilizar una base de datos, un archivo de texto o cualquier otro medio de almacenamiento de datos para esto.
+            string UltimoCodigo = aConexion.SP_Recuperar_MaxCodActa("sp_Recuperar_UltimaActa", 1);
+
+            if(UltimoCodigo == "")
+            {
+                //En caso de que nuestra tabla este vacía pasamos por defecto "ACT-ENT-Año.Actual-001-000"
+                string nuevoCodigo = string.Format("ACT-ENT-{0}-001-000", DateTime.Now.Year); 
+                return nuevoCodigo;
+            }
+            else
+            {
+                return  UltimoCodigo;
+            }          
         }
+        
+        //Generar codigos consecutivos dado un rango, ejemplo:  rango(0011010;0011015) resultado: 0011010, 0011011, 0011012, 0011013, 0011014 y 0011015; otro ejemplo: rango(2011001;2011003) resultado: 2011001, 2011002 y 2011003; en C# windows forms
+
     }
 }

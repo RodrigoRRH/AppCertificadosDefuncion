@@ -54,11 +54,24 @@
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.cboMicroRed = new System.Windows.Forms.ComboBox();
             this.cboEstablecimiento = new System.Windows.Forms.ComboBox();
+            this.lboCodigosCD = new System.Windows.Forms.ListBox();
+            this.txtCodigosCD = new System.Windows.Forms.TextBox();
+            this.gboOpcionCodigosCD = new System.Windows.Forms.GroupBox();
+            this.btnGenerarCodigosCD = new DevExpress.XtraEditors.SimpleButton();
+            this.txtHasta = new System.Windows.Forms.TextBox();
+            this.txtDesde = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.rbtRango = new System.Windows.Forms.RadioButton();
+            this.rbtManual = new System.Windows.Forms.RadioButton();
             this.panTop.SuspendLayout();
             this.panCenter.SuspendLayout();
             this.panRight.SuspendLayout();
             this.gboEncargado.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.gboOpcionCodigosCD.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGuardar
@@ -81,6 +94,9 @@
             // 
             // panCenter
             // 
+            this.panCenter.Controls.Add(this.gboOpcionCodigosCD);
+            this.panCenter.Controls.Add(this.txtCodigosCD);
+            this.panCenter.Controls.Add(this.lboCodigosCD);
             this.panCenter.Controls.Add(this.cboEstablecimiento);
             this.panCenter.Controls.Add(this.cboMicroRed);
             this.panCenter.Controls.Add(this.groupBox1);
@@ -300,7 +316,7 @@
             // cboMicroRed
             // 
             this.cboMicroRed.FormattingEnabled = true;
-            this.cboMicroRed.Location = new System.Drawing.Point(104, 280);
+            this.cboMicroRed.Location = new System.Drawing.Point(621, 327);
             this.cboMicroRed.Name = "cboMicroRed";
             this.cboMicroRed.Size = new System.Drawing.Size(121, 21);
             this.cboMicroRed.TabIndex = 10;
@@ -309,10 +325,129 @@
             // cboEstablecimiento
             // 
             this.cboEstablecimiento.FormattingEnabled = true;
-            this.cboEstablecimiento.Location = new System.Drawing.Point(548, 280);
+            this.cboEstablecimiento.Location = new System.Drawing.Point(618, 285);
             this.cboEstablecimiento.Name = "cboEstablecimiento";
             this.cboEstablecimiento.Size = new System.Drawing.Size(121, 21);
             this.cboEstablecimiento.TabIndex = 11;
+            // 
+            // lboCodigosCD
+            // 
+            this.lboCodigosCD.FormattingEnabled = true;
+            this.lboCodigosCD.Location = new System.Drawing.Point(238, 411);
+            this.lboCodigosCD.Name = "lboCodigosCD";
+            this.lboCodigosCD.Size = new System.Drawing.Size(167, 108);
+            this.lboCodigosCD.TabIndex = 12;
+            // 
+            // txtCodigosCD
+            // 
+            this.txtCodigosCD.Location = new System.Drawing.Point(31, 411);
+            this.txtCodigosCD.Multiline = true;
+            this.txtCodigosCD.Name = "txtCodigosCD";
+            this.txtCodigosCD.Size = new System.Drawing.Size(175, 108);
+            this.txtCodigosCD.TabIndex = 13;
+            // 
+            // gboOpcionCodigosCD
+            // 
+            this.gboOpcionCodigosCD.Controls.Add(this.btnGenerarCodigosCD);
+            this.gboOpcionCodigosCD.Controls.Add(this.txtHasta);
+            this.gboOpcionCodigosCD.Controls.Add(this.txtDesde);
+            this.gboOpcionCodigosCD.Controls.Add(this.label2);
+            this.gboOpcionCodigosCD.Controls.Add(this.label1);
+            this.gboOpcionCodigosCD.Controls.Add(this.labelControl11);
+            this.gboOpcionCodigosCD.Controls.Add(this.labelControl10);
+            this.gboOpcionCodigosCD.Controls.Add(this.rbtRango);
+            this.gboOpcionCodigosCD.Controls.Add(this.rbtManual);
+            this.gboOpcionCodigosCD.Location = new System.Drawing.Point(31, 285);
+            this.gboOpcionCodigosCD.Name = "gboOpcionCodigosCD";
+            this.gboOpcionCodigosCD.Size = new System.Drawing.Size(374, 111);
+            this.gboOpcionCodigosCD.TabIndex = 14;
+            this.gboOpcionCodigosCD.TabStop = false;
+            this.gboOpcionCodigosCD.Text = "Elegir una opción";
+            // 
+            // btnGenerarCodigosCD
+            // 
+            this.btnGenerarCodigosCD.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnGenerarCodigosCD.ImageOptions.SvgImage")));
+            this.btnGenerarCodigosCD.Location = new System.Drawing.Point(271, 12);
+            this.btnGenerarCodigosCD.Name = "btnGenerarCodigosCD";
+            this.btnGenerarCodigosCD.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
+            this.btnGenerarCodigosCD.Size = new System.Drawing.Size(84, 34);
+            this.btnGenerarCodigosCD.TabIndex = 9;
+            this.btnGenerarCodigosCD.Text = "Generar";
+            this.btnGenerarCodigosCD.Click += new System.EventHandler(this.btnGenerarCodigosCD_Click);
+            // 
+            // txtHasta
+            // 
+            this.txtHasta.Location = new System.Drawing.Point(222, 77);
+            this.txtHasta.Name = "txtHasta";
+            this.txtHasta.Size = new System.Drawing.Size(133, 21);
+            this.txtHasta.TabIndex = 16;
+            // 
+            // txtDesde
+            // 
+            this.txtDesde.Location = new System.Drawing.Point(222, 48);
+            this.txtDesde.Name = "txtDesde";
+            this.txtDesde.Size = new System.Drawing.Size(133, 21);
+            this.txtDesde.TabIndex = 15;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(175, 80);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Hasta:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(175, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Desde:";
+            // 
+            // labelControl11
+            // 
+            this.labelControl11.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.RightCenter;
+            this.labelControl11.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("labelControl11.ImageOptions.SvgImage")));
+            this.labelControl11.Location = new System.Drawing.Point(204, 22);
+            this.labelControl11.Name = "labelControl11";
+            this.labelControl11.Size = new System.Drawing.Size(52, 20);
+            this.labelControl11.TabIndex = 3;
+            this.labelControl11.Text = "Rango";
+            // 
+            // labelControl10
+            // 
+            this.labelControl10.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.RightCenter;
+            this.labelControl10.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("labelControl10.ImageOptions.SvgImage")));
+            this.labelControl10.Location = new System.Drawing.Point(34, 42);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(71, 36);
+            this.labelControl10.TabIndex = 2;
+            this.labelControl10.Text = "Manual";
+            // 
+            // rbtRango
+            // 
+            this.rbtRango.AutoSize = true;
+            this.rbtRango.Location = new System.Drawing.Point(178, 25);
+            this.rbtRango.Name = "rbtRango";
+            this.rbtRango.Size = new System.Drawing.Size(14, 13);
+            this.rbtRango.TabIndex = 1;
+            this.rbtRango.TabStop = true;
+            this.rbtRango.UseVisualStyleBackColor = true;
+            this.rbtRango.CheckedChanged += new System.EventHandler(this.rbtRango_CheckedChanged);
+            // 
+            // rbtManual
+            // 
+            this.rbtManual.AutoSize = true;
+            this.rbtManual.Location = new System.Drawing.Point(14, 53);
+            this.rbtManual.Name = "rbtManual";
+            this.rbtManual.Size = new System.Drawing.Size(14, 13);
+            this.rbtManual.TabIndex = 0;
+            this.rbtManual.TabStop = true;
+            this.rbtManual.UseVisualStyleBackColor = true;
+            this.rbtManual.CheckedChanged += new System.EventHandler(this.rbtManual_CheckedChanged);
             // 
             // FrmActaEntrega
             // 
@@ -329,6 +464,8 @@
             this.gboEncargado.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.gboOpcionCodigosCD.ResumeLayout(false);
+            this.gboOpcionCodigosCD.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -360,5 +497,17 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private System.Windows.Forms.ComboBox cboEstablecimiento;
         private System.Windows.Forms.ComboBox cboMicroRed;
+        private System.Windows.Forms.ListBox lboCodigosCD;
+        private System.Windows.Forms.TextBox txtCodigosCD;
+        private System.Windows.Forms.GroupBox gboOpcionCodigosCD;
+        private System.Windows.Forms.TextBox txtHasta;
+        private System.Windows.Forms.TextBox txtDesde;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private DevExpress.XtraEditors.LabelControl labelControl11;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private System.Windows.Forms.RadioButton rbtRango;
+        private System.Windows.Forms.RadioButton rbtManual;
+        private DevExpress.XtraEditors.SimpleButton btnGenerarCodigosCD;
     }
 }

@@ -58,6 +58,8 @@ namespace LibFormularios
             frmConfirmartTest.txtEncargado.Text = txtDocumentoEncargado.Text + ' ' + txtNombresEncargado.Text + ' ' + txtApellidosEncargado.Text;
             frmConfirmartTest.txtPersonalSalud.Text = txtDocumentoPersonal.Text + ' ' + txtNombresPersonal.Text + ' ' + txtApellidosPersonal.Text;
 
+            frmConfirmartTest.txtFecha.Text = dtpFecha.Value.ToString("dd-MM-yyyy");
+            frmConfirmartTest.txtHora.Text = dtpHora.Text;
 
             // Muestra el formulario de informe
             frmConfirmartTest.ShowDialog();
@@ -127,14 +129,102 @@ namespace LibFormularios
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            //txtCodigoActa.Text = aActaEntrega.generarCodigo();
+            txtCodigoActa.Text = aActaEntrega.GenerarCodigoAutonumerico();
+
+            //GenerarCodigosCD();
+
+            //txtCodigoActa.Text = aActaEntrega.obtenerUltimoCodigo();
 
             //txtCodigoActa.Text = (aActaEntrega.obtenerUltimoCodigo())[0];
 
             //txtCodigoActa.Text = aActaEntrega.GenerarCodigoAutonumerico(1000);
 
-            string [] list = { "ACT-ENT-2023-001-001", "ACT-ENT-2023-002-001", "ACT-ENT-2024-001-001"};
-            txtCodigoActa.Text = list.Max();
+            //string [] list = { "ACT-ENT-2023-001-001", "ACT-ENT-2023-002-001", "ACT-ENT-2024-001-001", "ACT-ENT-2025-001-001", "ACT-ENT-2023-999-999" };
+            //txtCodigoActa.Text = list.Max();
+        }
+
+        public void GenerarCodigosCD()
+        {
+            // radiobutton opcion: insertar codigos manualmente o por rangos() sin comas 
+            // bloquear el listbox si es por rango; Habilitar el listbox si es manualmente
+            // un mensaje(label) si es manual, sin comas 
+
+            try
+            {
+                if (txtDesde.Text != "" & txtHasta.Text != "")
+                {
+
+                    string rangoInicio = txtDesde.Text;//"1011010";
+                    string rangoFin = txtHasta.Text;//"1011011";
+                    List<string> codigos = new List<string>();
+
+                    int longitudCadena = rangoInicio.Length;
+
+                    int inicio = int.Parse(rangoInicio);
+                    int fin = int.Parse(rangoFin);
+
+                    if (inicio <= fin)
+                    {
+                        for (int i = inicio; i <= fin; i++)
+                        {
+                            codigos.Add(i.ToString("D" + longitudCadena));
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Desde debe ser menor que Hasta");
+                    }
+
+
+                    // En el ejemplo anterior, "D7" indica que se deben utilizar 7 dígitos para el número, 
+                    // rellenando con ceros a la izquierda en caso de que el número tenga menos de 7 dígitos.
+
+                    // Para mostrar los códigos generados, puedes utilizar un control ListBox de Windows Forms:
+                    lboCodigosCD.DataSource = codigos;
+                    //txtCodigoActa.Text = longitudCadena.ToString();
+                    //txtCodigoActa.Text = codigos[0];
+                }
+                else
+                {
+                    MessageBox.Show("Llenar los campos Desde y Hasta");
+                }
+            }
+            catch (Exception)
+            {
+
+                //throw;
+                MessageBox.Show("Error");
+            }
+            
+        }
+
+        private void btnGenerarCodigosCD_Click(object sender, EventArgs e)
+        {
+            GenerarCodigosCD();
+        }
+
+        private void rbtManual_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtManual.Checked)
+            {
+                txtCodigosCD.Enabled = true;
+                txtDesde.Enabled = false;
+                txtHasta.Enabled = false;
+                btnGenerarCodigosCD.Enabled = false;
+            }
+        }
+
+        private void rbtRango_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtRango.Checked)
+            {
+                txtCodigosCD.Text = "";
+                txtCodigosCD.Enabled = false;
+                txtDesde.Enabled = true;
+                txtHasta.Enabled = true;
+                btnGenerarCodigosCD.Enabled = true;
+
+            }
         }
     }
 }

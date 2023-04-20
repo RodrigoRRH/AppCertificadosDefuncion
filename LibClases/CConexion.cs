@@ -121,6 +121,35 @@ namespace LibClases
             return resultado;
         }
 
+        // -- Metodo para recuperar el valor del Max(CodActa) de la base de datos
+        // -- Opcion: 1 si es Acta_Entrega y 2 si es Acta_Recepcion
+        public string SP_Recuperar_MaxCodActa(string sp, int opcion)
+        {
+            string resultado;
+
+            // Ejecutar la consulta
+            aAdaptador.SelectCommand = new SqlCommand(sp, aConexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            aAdaptador.SelectCommand.CommandTimeout = 1000;
+            aAdaptador.SelectCommand.Parameters.Add("@Opcion", SqlDbType.Int).Value = opcion;
+
+            aConexion.Open();
+            SqlDataReader registro = aAdaptador.SelectCommand.ExecuteReader();
+            if (registro.Read())
+            {
+                resultado = registro["Mensaje"].ToString();
+            }
+            else
+            {
+                resultado = registro["Mensaje"].ToString();
+            }
+            aConexion.Close();
+
+            return resultado;
+        }
+
         // -- Metodo para cargar las MicroRedes a nuestro combobox
         public DataSet CargarMicrored()
         {
