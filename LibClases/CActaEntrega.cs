@@ -24,7 +24,7 @@ namespace LibClases
             return new string[] { "CodActaEntrega", "Fecha", "Hora", "Documento_Encargado", "Documento_Personal", "MicroRed", "Establecimiento" };
         }
 
-        public void RegistrarActaEntrega(string CodActaEntrega, string Fecha, string Hora, string Documento_Encargado, string Documento_Personal, string MicroRed, string Establecimiento)
+        public void RegistrarActaEntrega(string CodActaEntrega, DateTime Fecha, DateTime Hora, string Documento_Encargado, string Documento_Personal, string MicroRed, string Establecimiento)
         {
             string Consulta = "insert into Acta_Entrega values('" + CodActaEntrega + "', '" + Fecha + "', '" + Hora + "','" + Documento_Encargado + "','" + Documento_Personal + "','" + MicroRed + "', '" + Establecimiento + "')";
             aConexion.EjecutarComando(Consulta);

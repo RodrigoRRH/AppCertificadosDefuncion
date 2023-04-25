@@ -22,6 +22,31 @@ namespace LibFormularios
         {
             InitializeComponent();
             CargarCboMicro();
+            txtCodigoActa.Text = aActaEntrega.GenerarCodigoAutonumerico();
+        }
+
+        public override bool EsRegistroValido()
+        {
+            if (txtCodigoActa.Text.Trim() != "" && txtDocumentoEncargado.Text.Trim() != "" && txtDocumentoPersonal.Text.Trim() != "" && cboMicroRed.Text.Trim() != "")
+            {
+                if (rbtManual.Checked)
+                {
+                    if (txtCodigosCD.Text.Trim() != "")
+                        return true;
+                    else
+                        return false;
+                }
+                else if (rbtRango.Checked)
+                {
+                    if (lboCodigosCD.Items.Count != 0)
+                        return true;
+                    return false;
+                }
+                else
+                    return false;
+            }
+            else
+                return false;
         }
 
         private void btnTest_Click(object sender, EventArgs e)
@@ -29,6 +54,7 @@ namespace LibFormularios
             // Crea una nueva instancia del formulario de informe
 
             //FrmConfirmartTest ConfirmartTest = new FrmConfirmartTest();
+
             MostrarInforme();
 
             // Establece los valores de los controles de texto en el formulario de informe
@@ -39,6 +65,36 @@ namespace LibFormularios
 
             //// Muestra el formulario de informe
             //informeForm.ShowDialog();
+            //for (int i = 0; i <lboCodigosCD.Items; i++)
+            //{
+
+            //}
+
+            //txtCodigosCD.Text = lboCodigosCD.Items[lboCodigosCD.Items.Count-1].ToString();
+
+            // -- ************************************************************************************************--
+            // Crea una lista y en ella almacena los datos de un ListBox, además de mostrar el contenido de dicha lista en el textbox txtCodigosCD
+            // Crear una lista para almacenar los elementos del ListBox
+            //List<string> listaElementos = new List<string>();
+            //int n = lboCodigosCD.Items.Count;
+
+            ////// Recorrer los elementos del ListBox y agregarlos a la lista
+            //foreach (var item in lboCodigosCD.Items)
+            //{
+            //    listaElementos.Add(item.ToString());
+            //    if (lboCodigosCD.Items[n-1] != item)
+            //    {
+            //        txtCodigosCD.Text = txtCodigosCD.Text + item.ToString() + ',';
+            //    }
+            //    else
+            //    {
+            //        txtCodigosCD.Text = txtCodigosCD.Text + item.ToString();
+            //    }
+
+            //}
+            // -- ************************************************************************************************--
+
+
         }
 
         private void MostrarInforme()
@@ -130,6 +186,11 @@ namespace LibFormularios
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             txtCodigoActa.Text = aActaEntrega.GenerarCodigoAutonumerico();
+            
+            
+            //txtDocumentoEncargado.Text = "";
+
+            //lboCodigosCD.Items.Clear();
 
             //GenerarCodigosCD();
 
@@ -211,6 +272,7 @@ namespace LibFormularios
                 txtDesde.Enabled = false;
                 txtHasta.Enabled = false;
                 btnGenerarCodigosCD.Enabled = false;
+                lboCodigosCD.Enabled = true;
             }
         }
 
@@ -218,13 +280,80 @@ namespace LibFormularios
         {
             if (rbtRango.Checked)
             {
-                txtCodigosCD.Text = "";
+                //txtCodigosCD.Text = "";
                 txtCodigosCD.Enabled = false;
                 txtDesde.Enabled = true;
                 txtHasta.Enabled = true;
                 btnGenerarCodigosCD.Enabled = true;
+                lboCodigosCD.Enabled = true;
 
             }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        public override void Grabar()
+        {
+            if (EsRegistroValido())
+            {
+
+                string estado = "PROCESO, POR DEVOLVER";
+                try
+                {
+                    aActaEntrega.RegistrarActaEntrega(txtCodigoActa.Text, dtpFecha.Value, dtpHora.Value, txtDocumentoEncargado.Text, txtDocumentoPersonal.Text, cboMicroRed.Text, cboEstablecimiento.Text);
+
+                    if (rbtManual.Checked)
+                    {
+                        // pasar el texbox a una lista de string separados por comas, y guardar uno por uno en la base de datos
+                    }
+                    if (rbtRango.Checked)
+                    {
+                        // pasar el listbox a una lista de string separados por comas, y guardar uno por uno en la base de datos
+
+
+                        // Crea una lista y en ella almacena los datos de un ListBox, además de mostrar el contenido de dicha lista en el textbox txtCodigosCD
+                        // Crear una lista para almacenar los elementos del ListBox
+                        //List<string> listaElementos = new List<string>();
+                        //int n = lboCodigosCD.Items.Count;
+
+                        ////// Recorrer los elementos del ListBox y agregarlos a la lista
+                        //foreach (var item in lboCodigosCD.Items)
+                        //{
+                        //    listaElementos.Add(item.ToString());
+                        //    if (lboCodigosCD.Items[n-1] != item)
+                        //    {
+                        //        txtCodigosCD.Text = txtCodigosCD.Text + item.ToString() + ',';
+                        //    }
+                        //    else
+                        //    {
+                        //        txtCodigosCD.Text = txtCodigosCD.Text + item.ToString();
+                        //    }
+
+                        //}
+                    }
+
+                    MessageBox.Show("Registro Exitoso");
+                    //LlamarAsignarRevisores();
+                    MessageBox.Show("PROCESO DE INSCRIPCCION TERMINADO");
+                    //TodoBlanco();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("ERROR AL REALIZAR LA OPERACION");
+                }
+            }
+            else
+            {
+                MessageBox.Show("COMPLETE TODOS LOS CAMPOS");
+            }
+        }
+
+        public void aea(DateTime dt)
+        {
+            dt = dtpFecha.Value;
         }
     }
 }

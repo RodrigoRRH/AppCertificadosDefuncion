@@ -66,6 +66,8 @@
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.rbtRango = new System.Windows.Forms.RadioButton();
             this.rbtManual = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panTop.SuspendLayout();
             this.panCenter.SuspendLayout();
             this.panRight.SuspendLayout();
@@ -77,6 +79,7 @@
             // btnGuardar
             // 
             this.btnGuardar.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnGuardar.ImageOptions.SvgImage")));
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnNuevo
             // 
@@ -94,6 +97,8 @@
             // 
             // panCenter
             // 
+            this.panCenter.Controls.Add(this.label4);
+            this.panCenter.Controls.Add(this.label3);
             this.panCenter.Controls.Add(this.gboOpcionCodigosCD);
             this.panCenter.Controls.Add(this.txtCodigosCD);
             this.panCenter.Controls.Add(this.lboCodigosCD);
@@ -316,22 +321,23 @@
             // cboMicroRed
             // 
             this.cboMicroRed.FormattingEnabled = true;
-            this.cboMicroRed.Location = new System.Drawing.Point(621, 327);
+            this.cboMicroRed.Location = new System.Drawing.Point(570, 311);
             this.cboMicroRed.Name = "cboMicroRed";
-            this.cboMicroRed.Size = new System.Drawing.Size(121, 21);
+            this.cboMicroRed.Size = new System.Drawing.Size(172, 21);
             this.cboMicroRed.TabIndex = 10;
             this.cboMicroRed.SelectedIndexChanged += new System.EventHandler(this.cboMicroRed_SelectedIndexChanged);
             // 
             // cboEstablecimiento
             // 
             this.cboEstablecimiento.FormattingEnabled = true;
-            this.cboEstablecimiento.Location = new System.Drawing.Point(618, 285);
+            this.cboEstablecimiento.Location = new System.Drawing.Point(570, 354);
             this.cboEstablecimiento.Name = "cboEstablecimiento";
-            this.cboEstablecimiento.Size = new System.Drawing.Size(121, 21);
+            this.cboEstablecimiento.Size = new System.Drawing.Size(172, 21);
             this.cboEstablecimiento.TabIndex = 11;
             // 
             // lboCodigosCD
             // 
+            this.lboCodigosCD.Enabled = false;
             this.lboCodigosCD.FormattingEnabled = true;
             this.lboCodigosCD.Location = new System.Drawing.Point(238, 411);
             this.lboCodigosCD.Name = "lboCodigosCD";
@@ -366,6 +372,7 @@
             // 
             // btnGenerarCodigosCD
             // 
+            this.btnGenerarCodigosCD.Enabled = false;
             this.btnGenerarCodigosCD.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnGenerarCodigosCD.ImageOptions.SvgImage")));
             this.btnGenerarCodigosCD.Location = new System.Drawing.Point(271, 12);
             this.btnGenerarCodigosCD.Name = "btnGenerarCodigosCD";
@@ -377,6 +384,7 @@
             // 
             // txtHasta
             // 
+            this.txtHasta.Enabled = false;
             this.txtHasta.Location = new System.Drawing.Point(222, 77);
             this.txtHasta.Name = "txtHasta";
             this.txtHasta.Size = new System.Drawing.Size(133, 21);
@@ -384,6 +392,7 @@
             // 
             // txtDesde
             // 
+            this.txtDesde.Enabled = false;
             this.txtDesde.Location = new System.Drawing.Point(222, 48);
             this.txtDesde.Name = "txtDesde";
             this.txtDesde.Size = new System.Drawing.Size(133, 21);
@@ -434,13 +443,13 @@
             this.rbtRango.Name = "rbtRango";
             this.rbtRango.Size = new System.Drawing.Size(14, 13);
             this.rbtRango.TabIndex = 1;
-            this.rbtRango.TabStop = true;
             this.rbtRango.UseVisualStyleBackColor = true;
             this.rbtRango.CheckedChanged += new System.EventHandler(this.rbtRango_CheckedChanged);
             // 
             // rbtManual
             // 
             this.rbtManual.AutoSize = true;
+            this.rbtManual.Checked = true;
             this.rbtManual.Location = new System.Drawing.Point(14, 53);
             this.rbtManual.Name = "rbtManual";
             this.rbtManual.Size = new System.Drawing.Size(14, 13);
@@ -448,6 +457,24 @@
             this.rbtManual.TabStop = true;
             this.rbtManual.UseVisualStyleBackColor = true;
             this.rbtManual.CheckedChanged += new System.EventHandler(this.rbtManual_CheckedChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(470, 314);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "MicroRed:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(470, 359);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(85, 13);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Establecimiento:";
             // 
             // FrmActaEntrega
             // 
@@ -509,5 +536,7 @@
         private System.Windows.Forms.RadioButton rbtRango;
         private System.Windows.Forms.RadioButton rbtManual;
         private DevExpress.XtraEditors.SimpleButton btnGenerarCodigosCD;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
     }
 }
