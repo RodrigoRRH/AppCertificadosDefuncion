@@ -68,6 +68,7 @@
             this.rbtManual = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panTop.SuspendLayout();
             this.panCenter.SuspendLayout();
             this.panRight.SuspendLayout();
@@ -97,6 +98,7 @@
             // 
             // panCenter
             // 
+            this.panCenter.Controls.Add(this.textBox1);
             this.panCenter.Controls.Add(this.label4);
             this.panCenter.Controls.Add(this.label3);
             this.panCenter.Controls.Add(this.gboOpcionCodigosCD);
@@ -339,14 +341,14 @@
             // 
             this.lboCodigosCD.Enabled = false;
             this.lboCodigosCD.FormattingEnabled = true;
-            this.lboCodigosCD.Location = new System.Drawing.Point(238, 411);
+            this.lboCodigosCD.Location = new System.Drawing.Point(238, 402);
             this.lboCodigosCD.Name = "lboCodigosCD";
             this.lboCodigosCD.Size = new System.Drawing.Size(167, 108);
             this.lboCodigosCD.TabIndex = 12;
             // 
             // txtCodigosCD
             // 
-            this.txtCodigosCD.Location = new System.Drawing.Point(31, 411);
+            this.txtCodigosCD.Location = new System.Drawing.Point(31, 402);
             this.txtCodigosCD.Multiline = true;
             this.txtCodigosCD.Name = "txtCodigosCD";
             this.txtCodigosCD.Size = new System.Drawing.Size(175, 108);
@@ -430,7 +432,7 @@
             // 
             this.labelControl10.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.RightCenter;
             this.labelControl10.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("labelControl10.ImageOptions.SvgImage")));
-            this.labelControl10.Location = new System.Drawing.Point(34, 42);
+            this.labelControl10.Location = new System.Drawing.Point(42, 20);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(71, 36);
             this.labelControl10.TabIndex = 2;
@@ -450,7 +452,7 @@
             // 
             this.rbtManual.AutoSize = true;
             this.rbtManual.Checked = true;
-            this.rbtManual.Location = new System.Drawing.Point(14, 53);
+            this.rbtManual.Location = new System.Drawing.Point(22, 31);
             this.rbtManual.Name = "rbtManual";
             this.rbtManual.Size = new System.Drawing.Size(14, 13);
             this.rbtManual.TabIndex = 0;
@@ -475,6 +477,17 @@
             this.label4.Size = new System.Drawing.Size(85, 13);
             this.label4.TabIndex = 16;
             this.label4.Text = "Establecimiento:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(31, 516);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(374, 48);
+            this.textBox1.TabIndex = 17;
+            this.textBox1.Text = "* Si es manual, los códigos separados por comas, ejm: 101, 102, 103\r\n* Si es por " +
+    "rango: Desde: NroMenor, Hasta: NroMayor; ejm: Desde: 101 Hasta: 103\r\n";
             // 
             // FrmActaEntrega
             // 
@@ -538,5 +551,6 @@
         private DevExpress.XtraEditors.SimpleButton btnGenerarCodigosCD;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

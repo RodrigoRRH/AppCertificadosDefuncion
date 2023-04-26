@@ -24,11 +24,21 @@ namespace LibClases
             return new string[] { "CodActaEntrega", "Fecha", "Hora", "Documento_Encargado", "Documento_Personal", "MicroRed", "Establecimiento" };
         }
 
+        // -- insertar(guardar) Acta Entrega en la BD
         public void RegistrarActaEntrega(string CodActaEntrega, DateTime Fecha, DateTime Hora, string Documento_Encargado, string Documento_Personal, string MicroRed, string Establecimiento)
         {
             string Consulta = "insert into Acta_Entrega values('" + CodActaEntrega + "', '" + Fecha + "', '" + Hora + "','" + Documento_Encargado + "','" + Documento_Personal + "','" + MicroRed + "', '" + Establecimiento + "')";
             aConexion.EjecutarComando(Consulta);
         }
+
+        // -- insertar(guardar) las relaciones de Acta_Entrega con los Certificados de Defuncion en la BD, tabla ActaEntrega_CD
+        public void RegistrarActaEntrega_CD(string CodActaEntrega, string CodCertificadoDefuncion, string Estado)
+        {
+            string Consulta = "insert into ActaEntrega_CD values('" + CodActaEntrega + "','" + CodCertificadoDefuncion + "', '" + Estado + "')";
+            aConexion.EjecutarComando(Consulta);
+        }
+
+        // -- Mostrar los registros de Acta Entrega
         public DataTable MostrarActasEntrega()
         {
             string Consulta = "select * from Acta_Entrega";
@@ -36,12 +46,14 @@ namespace LibClases
             return aConexion.Datos.Tables[0];
         }
 
+        // -- Cambiar estado si un Certificado de Defuncion fue devuelto, en la tabla ActaEntrega_CD( donde se tienen las relaciones de Acta_Entrega con los Certificados de Defuncion en la BD)
         public void CambiarEstadoFinalizado(string CodCertificadoDefuncion)
         {
-            string Consulta = "UPDATE ActaEntrega_CD SET Estado = 'FINALIZADO' WHERE CodExpediente='" + CodCertificadoDefuncion + "' ";
+            string Consulta = "UPDATE ActaEntrega_CD SET Estado = 'FINALIZADO' WHERE CodCertificadoDefuncion='" + CodCertificadoDefuncion + "' ";
             aConexion.EjecutarComando(Consulta);
         }
 
+        // -- Mostrar los registros de Personal
         public DataTable MostrarPersonal()
         {
             string Consulta = "SELECT MAX(numero_documento) as Numero_Documento, Nombres_Personal as Nombres, Apellido_Paterno_Personal + ' ' + Apellido_Materno_Personal\r\nas Apellidos, MAX(p.Id_Profesion) as Id_Profesion, pr.Descripcion_Profesion as Profesion\r\nFROM MAESTRO_PERSONAL p inner join MAESTRO_HIS_PROFESION pr on p.Id_Profesion=pr.Id_Profesion\r\nGROUP BY Numero_Documento, Nombres_Personal, Apellido_Paterno_Personal, Apellido_Materno_Personal, pr.Descripcion_Profesion";

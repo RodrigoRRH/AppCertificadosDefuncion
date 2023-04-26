@@ -1,4 +1,6 @@
-﻿using LibClases;
+﻿using DevExpress.XtraBars.Docking2010.Views.Widget;
+using DevExpress.XtraPrinting.BarCode;
+using LibClases;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +17,7 @@ namespace LibFormularios
     {
         CConexion aConexion = new CConexion();
         CActaEntrega aActaEntrega = new CActaEntrega();
+        FrmMenu aMenu = new FrmMenu();
 
         DataTable dt = new DataTable();
         DataTable dt1 = new DataTable();
@@ -106,16 +109,64 @@ namespace LibFormularios
             // Crea una nueva instancia del formulario de informe
             FrmConfirmartTest frmConfirmartTest = new FrmConfirmartTest();
 
-            frmConfirmartTest.txtCodigosCD.Text = txtCodigoActa.Text;
+            if (rbtManual.Checked)
+            {
+                string codigos= "";
+                List<string> codigosCD = new List<string>(txtCodigosCD.Text.Split(','));
+
+                for (int i = 0; i < codigosCD.Count; i++)
+                {
+                    // [10,11,12,13,14]
+                    // [ 0, 1, 2, 3, 4]
+                    // 5
+                    // 1.- if i=0<4     : 10, 
+                    // 2.- if i=1<4     : 10, 11, 
+                    // 3.- if i=2<4     : 10, 11, 12, 
+                    // 4.- if i=3<4     : 10, 11, 12, 13, 
+                    // 5.- else i=4<4   : 10, 11, 12, 13, 14
+
+                    if (i<codigosCD.Count-1)
+                    {
+                        codigos += codigosCD[i].Trim() + ", ";
+                    }
+                    else
+                    {
+                        codigos += codigosCD[i].Trim();
+                    }
+                }
+                frmConfirmartTest.txtCodigosCD.Text = codigos;
+
+            }
+            else if (rbtRango.Checked)
+            {
+                string codigosRango = "";
+
+                foreach (string item in lboCodigosCD.Items)
+                {
+                    if (lboCodigosCD.Items[lboCodigosCD.Items.Count - 1].ToString() != item)
+                    {
+                        codigosRango += item + ", ";
+                    }
+                    else
+                    {
+                        codigosRango += item;
+                    }
+
+                }
+                frmConfirmartTest.txtCodigosCD.Text = codigosRango;
+            }
+
+            frmConfirmartTest.txtCodigoActa.Text = txtCodigoActa.Text;
+            //frmConfirmartTest.txtCodigosCD.Text = txtCodigoActa.Text;
             frmConfirmartTest.txtMicroRed.Text = cboMicroRed.Text;
             frmConfirmartTest.txtEstablecimiento.Text = cboEstablecimiento.Text;
             frmConfirmartTest.dtpFecha.Value = dtpFecha.Value;
             frmConfirmartTest.dtpHora.Value = dtpHora.Value;
-            frmConfirmartTest.txtEncargado.Text = txtDocumentoEncargado.Text + ' ' + txtNombresEncargado.Text + ' ' + txtApellidosEncargado.Text;
-            frmConfirmartTest.txtPersonalSalud.Text = txtDocumentoPersonal.Text + ' ' + txtNombresPersonal.Text + ' ' + txtApellidosPersonal.Text;
+            frmConfirmartTest.txtEncargado.Text = txtNombresEncargado.Text + ' ' + txtApellidosEncargado.Text;
+            frmConfirmartTest.txtPersonalSalud.Text = txtNombresPersonal.Text + ' ' + txtApellidosPersonal.Text;
 
-            frmConfirmartTest.txtFecha.Text = dtpFecha.Value.ToString("dd-MM-yyyy");
-            frmConfirmartTest.txtHora.Text = dtpHora.Text;
+            //frmConfirmartTest.txtFecha.Text = dtpFecha.Value.ToString("dd-MM-yyyy");
+            //frmConfirmartTest.txtHora.Text = dtpHora.Text;
 
             // Muestra el formulario de informe
             frmConfirmartTest.ShowDialog();
@@ -292,7 +343,16 @@ namespace LibFormularios
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            //
+            DialogResult resultado = MessageBox.Show("¿Seguro que desea guardar?", "RED NORTE", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.OK)
+            {
+                Grabar();
+            }
+            else
+            {
+                // El usuario hizo clic en "Cancelar"
+            }
         }
 
         public override void Grabar()
@@ -308,6 +368,13 @@ namespace LibFormularios
                     if (rbtManual.Checked)
                     {
                         // pasar el texbox a una lista de string separados por comas, y guardar uno por uno en la base de datos
+                        List<string> listaCodigosCD = new List<string>(txtCodigosCD.Text.Split(','));
+
+                        foreach (string item in listaCodigosCD)
+                        {
+                            aActaEntrega.RegistrarActaEntrega_CD(txtCodigoActa.Text, item.Trim(), estado);
+                        }
+                        
                     }
                     if (rbtRango.Checked)
                     {
@@ -316,28 +383,23 @@ namespace LibFormularios
 
                         // Crea una lista y en ella almacena los datos de un ListBox, además de mostrar el contenido de dicha lista en el textbox txtCodigosCD
                         // Crear una lista para almacenar los elementos del ListBox
-                        //List<string> listaElementos = new List<string>();
-                        //int n = lboCodigosCD.Items.Count;
+                        //List<string> listBoxCodigosCD = new List<string>();
 
                         ////// Recorrer los elementos del ListBox y agregarlos a la lista
-                        //foreach (var item in lboCodigosCD.Items)
-                        //{
-                        //    listaElementos.Add(item.ToString());
-                        //    if (lboCodigosCD.Items[n-1] != item)
-                        //    {
-                        //        txtCodigosCD.Text = txtCodigosCD.Text + item.ToString() + ',';
-                        //    }
-                        //    else
-                        //    {
-                        //        txtCodigosCD.Text = txtCodigosCD.Text + item.ToString();
-                        //    }
+                        foreach (string item in lboCodigosCD.Items)
+                        {
+                            aActaEntrega.RegistrarActaEntrega_CD(txtCodigoActa.Text, item, estado);
 
-                        //}
+                        }
                     }
 
-                    MessageBox.Show("Registro Exitoso");
+                    MessageBox.Show("REGISTRO EXITOSO", "RED NORTE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //aMenu.AbrirFormulario(new FrmActaEntrega());
+                    //FrmActaEntrega actaEntrega = new FrmActaEntrega();
+                    //actaEntrega.ShowDialog();
                     //LlamarAsignarRevisores();
-                    MessageBox.Show("PROCESO DE INSCRIPCCION TERMINADO");
+                    //MessageBox.Show("PROCESO DE INSCRIPCCION TERMINADO");
                     //TodoBlanco();
                 }
                 catch (Exception)
@@ -354,6 +416,11 @@ namespace LibFormularios
         public void aea(DateTime dt)
         {
             dt = dtpFecha.Value;
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

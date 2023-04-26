@@ -13,6 +13,7 @@ namespace LibFormularios
 {
     public partial class FrmConfirmartTest : DevExpress.XtraEditors.XtraForm
     {
+        FrmActaEntrega actaEntrega = new FrmActaEntrega();
         public FrmConfirmartTest()
         {
             InitializeComponent();
@@ -21,6 +22,16 @@ namespace LibFormularios
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            actaEntrega.Grabar();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

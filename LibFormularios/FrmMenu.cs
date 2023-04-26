@@ -52,7 +52,7 @@ namespace LibFormularios
             return true;
         }
 
-        private void AbrirFormulario(Form formulario)
+        public void AbrirFormulario(Form formulario)
         {
             // Verifica si ya hay un formulario abierto
             if (cntInicio.Controls.Count > 0)
