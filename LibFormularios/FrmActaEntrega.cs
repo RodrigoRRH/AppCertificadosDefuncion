@@ -367,7 +367,7 @@ namespace LibFormularios
 
                     if (rbtManual.Checked)
                     {
-                        // pasar el texbox a una lista de string separados por comas, y guardar uno por uno en la base de datos
+                        // pasar el texbox(string, separado por comas) a una lista de strings, y guardar uno por uno en la base de datos
                         List<string> listaCodigosCD = new List<string>(txtCodigosCD.Text.Split(','));
 
                         foreach (string item in listaCodigosCD)
