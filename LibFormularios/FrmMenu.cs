@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace LibFormularios
@@ -77,6 +78,52 @@ namespace LibFormularios
             //AbrirSubForm(frm);// como colocar un label en cualquier posicion dentro de un flowlayoutpanel c# windows forms
 
             //AbrirFormulario(new FrmActaEntrega());
+        }
+
+        private void cntInicio_Paint(object sender, PaintEventArgs e)
+        {
+            //// Carga la imagen de la marca de agua
+            //Image img = pboMarcaAgua.Image;
+
+            //// Establece la opacidad de la imagen (aquí la he establecido en 50%)
+            //float opacity = 0.5f;
+
+            //// Crea un pincel para dibujar la imagen
+            //Brush brush = new SolidBrush(Color.FromArgb((int)(opacity * 255), Color.White));
+
+            //// Dibuja la imagen en el fondo del formulario
+            //e.Graphics.DrawImage(img, new Point(0, 0));
+
+            //// Dibuja el pincel encima de la imagen para establecer la opacidad
+            //e.Graphics.FillRectangle(brush, this.ClientRectangle);
+        }
+
+        private void FrmMenu_Paint(object sender, PaintEventArgs e)
+        {
+            //// Carga la imagen de la marca de agua
+            //Image img = pboMarcaAgua.Image;
+
+            //// Establece la opacidad de la imagen (aquí la he establecido en 50%)
+            //float opacity = 0.5f;
+
+            //// Crea un pincel para dibujar la imagen
+            //Brush brush = new SolidBrush(Color.FromArgb((int)(opacity * 255), Color.White));
+
+            //// Dibuja la imagen en el fondo del formulario
+            //e.Graphics.DrawImage(img, new Point(0, 0));
+
+            //// Dibuja el pincel encima de la imagen para establecer la opacidad
+            //e.Graphics.FillRectangle(brush, this.ClientRectangle);
+        }
+
+        private void itmActaRecepcion_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(new FrmActaRecepcion());
+        }
+
+        private void itmActaEntrega2_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(new FrmActaEntrega());
         }
     }
 }

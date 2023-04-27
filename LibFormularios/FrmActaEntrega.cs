@@ -17,6 +17,7 @@ namespace LibFormularios
     {
         CConexion aConexion = new CConexion();
         CActaEntrega aActaEntrega = new CActaEntrega();
+        CCertificado aCertificado = new CCertificado();
         FrmMenu aMenu = new FrmMenu();
 
         DataTable dt = new DataTable();
@@ -25,7 +26,7 @@ namespace LibFormularios
         {
             InitializeComponent();
             CargarCboMicro();
-            txtCodigoActa.Text = aActaEntrega.GenerarCodigoAutonumerico();
+            txtCodigoActa.Text = aActaEntrega.GenerarCodigoActaEntrega();
         }
 
         public override bool EsRegistroValido()
@@ -59,21 +60,6 @@ namespace LibFormularios
             //FrmConfirmartTest ConfirmartTest = new FrmConfirmartTest();
 
             MostrarInforme();
-
-            // Establece los valores de los controles de texto en el formulario de informe
-            //informeForm.
-            //informeForm.ApellidoLabel.Text = apellidoTextBox.Text;
-            //informeForm.EdadLabel.Text = edadTextBox.Text;
-            //// Agrega cualquier otro dato que desees mostrar en el informe
-
-            //// Muestra el formulario de informe
-            //informeForm.ShowDialog();
-            //for (int i = 0; i <lboCodigosCD.Items; i++)
-            //{
-
-            //}
-
-            //txtCodigosCD.Text = lboCodigosCD.Items[lboCodigosCD.Items.Count-1].ToString();
 
             // -- ************************************************************************************************--
             // Crea una lista y en ella almacena los datos de un ListBox, además de mostrar el contenido de dicha lista en el textbox txtCodigosCD
@@ -176,7 +162,7 @@ namespace LibFormularios
         {
             dt = aConexion.CargarMicrored().Tables[0];
             DataRow fila = dt.NewRow();
-            fila["MicroRed"] = "MicroRed";
+            fila["MicroRed"] = "";
             dt.Rows.InsertAt(fila, 0);
 
             cboMicroRed.ValueMember = "Codigo_MicroRed";
@@ -188,7 +174,7 @@ namespace LibFormularios
         {
             dt1 = aConexion.CargarEstablecimiento(MicroRed).Tables[0];
             DataRow fila1 = dt1.NewRow();
-            fila1["Establecimiento"] = "Establecimiento";
+            fila1["Establecimiento"] = "";
             dt1.Rows.InsertAt(fila1, 0);
 
             cboEstablecimiento.ValueMember = "Id_Establecimiento";
@@ -236,7 +222,7 @@ namespace LibFormularios
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            txtCodigoActa.Text = aActaEntrega.GenerarCodigoAutonumerico();
+            txtCodigoActa.Text = aActaEntrega.GenerarCodigoActaEntrega();
             
             
             //txtDocumentoEncargado.Text = "";
@@ -284,7 +270,7 @@ namespace LibFormularios
                     }
                     else
                     {
-                        MessageBox.Show("Desde debe ser menor que Hasta");
+                        MessageBox.Show("Desde debe ser menor que Hasta", "RED NORTE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
 
 
@@ -298,14 +284,14 @@ namespace LibFormularios
                 }
                 else
                 {
-                    MessageBox.Show("Llenar los campos Desde y Hasta");
+                    MessageBox.Show("Llenar los campos Desde y Hasta", "RED NORTE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception)
             {
 
                 //throw;
-                MessageBox.Show("Error");
+                MessageBox.Show("Error", "RED NORTE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             
         }
@@ -343,73 +329,105 @@ namespace LibFormularios
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            DialogResult resultado = MessageBox.Show("¿Seguro que desea guardar?", "RED NORTE", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-            if (resultado == DialogResult.OK)
+            if (EsRegistroValido())
             {
-                Grabar();
+                //MostrarInforme();
+                DialogResult resultado = MessageBox.Show("Seguro de guardar los datos", "RED NORTE", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+
+                if (resultado == DialogResult.OK)
+                {
+                    Grabar();
+                }
+                //Grabar();
             }
             else
             {
-                // El usuario hizo clic en "Cancelar"
+                MessageBox.Show("COMPLETE TODOS LOS CAMPOS", "RED NORTE", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
         }
 
         public override void Grabar()
         {
-            if (EsRegistroValido())
+            
+            string estado = "PROCESO, POR DEVOLVER";
+            try
             {
+                // Control de numero de inserciones; en caso que los codigo pasados de Certificado de Defuncion ya existan en la BD, no se creará el acta. Basta que uno o más codigos no existan, para que se cree el acta 
+                int cantidad = 0;
 
-                string estado = "PROCESO, POR DEVOLVER";
-                try
+                if (rbtManual.Checked)
                 {
-                    aActaEntrega.RegistrarActaEntrega(txtCodigoActa.Text, dtpFecha.Value, dtpHora.Value, txtDocumentoEncargado.Text, txtDocumentoPersonal.Text, cboMicroRed.Text, cboEstablecimiento.Text);
 
-                    if (rbtManual.Checked)
+                    // pasar el texbox(string, separado por comas) a una lista de strings, y guardar uno por uno en la base de datos
+                    List<string> listaCodigosCD = new List<string>(txtCodigosCD.Text.Split(','));
+
+                    foreach (string item in listaCodigosCD)
                     {
-                        // pasar el texbox(string, separado por comas) a una lista de strings, y guardar uno por uno en la base de datos
-                        List<string> listaCodigosCD = new List<string>(txtCodigosCD.Text.Split(','));
-
-                        foreach (string item in listaCodigosCD)
+                        if (aCertificado.ExisteCertificado(item.Trim()))
+                        {
+                            //Si el certificado existe, el encargado decide si guardar o no (falta agregar)
+                            MessageBox.Show("EL CERTIFICADO " + item.Trim() +" YA EXISTE, NO SE AGREGARÁ; LOS QUE NO EXISTAN SE AGREGARÁN", "RED NORTE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
                         {
                             aActaEntrega.RegistrarActaEntrega_CD(txtCodigoActa.Text, item.Trim(), estado);
+                            cantidad++;
                         }
-                        
                     }
-                    if (rbtRango.Checked)
+                    if (cantidad == 0)
                     {
-                        // pasar el listbox a una lista de string separados por comas, y guardar uno por uno en la base de datos
+                        MessageBox.Show("LOS CODIGOS YA EXISTEN, NO SE AGREGARÁN A LA BASE DE DATOS, NI SE CREARÁ EL ACTA DE ENTREGA", "RED NORTE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //this.Close();
 
-
-                        // Crea una lista y en ella almacena los datos de un ListBox, además de mostrar el contenido de dicha lista en el textbox txtCodigosCD
-                        // Crear una lista para almacenar los elementos del ListBox
-                        //List<string> listBoxCodigosCD = new List<string>();
-
-                        ////// Recorrer los elementos del ListBox y agregarlos a la lista
-                        foreach (string item in lboCodigosCD.Items)
-                        {
-                            aActaEntrega.RegistrarActaEntrega_CD(txtCodigoActa.Text, item, estado);
-
-                        }
                     }
-
-                    MessageBox.Show("REGISTRO EXITOSO", "RED NORTE", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    //aMenu.AbrirFormulario(new FrmActaEntrega());
-                    //FrmActaEntrega actaEntrega = new FrmActaEntrega();
-                    //actaEntrega.ShowDialog();
-                    //LlamarAsignarRevisores();
-                    //MessageBox.Show("PROCESO DE INSCRIPCCION TERMINADO");
-                    //TodoBlanco();
+                    else
+                    {
+                        aActaEntrega.RegistrarActaEntrega(txtCodigoActa.Text, dtpFecha.Value.ToString("dd-MM-yyyy"), dtpHora.Text, txtDocumentoEncargado.Text, txtNombresEncargado.Text, txtApellidosEncargado.Text, txtDocumentoPersonal.Text, txtNombresPersonal.Text, txtApellidosPersonal.Text, cboMicroRed.Text, cboEstablecimiento.Text);
+                        MessageBox.Show("REGISTRO EXITOSO, SE CREÓ EL ACTA: " + txtCodigoActa.Text, "RED NORTE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
                 }
-                catch (Exception)
+                if (rbtRango.Checked)
                 {
-                    MessageBox.Show("ERROR AL REALIZAR LA OPERACION");
+                    // pasar el listbox a una lista de string separados por comas, y guardar uno por uno en la base de datos
+
+
+                    // Crea una lista y en ella almacena los datos de un ListBox, además de mostrar el contenido de dicha lista en el textbox txtCodigosCD
+                    // Crear una lista para almacenar los elementos del ListBox
+
+                    ////// Recorrer los elementos del ListBox y agregarlos a la lista
+                    foreach (string item in lboCodigosCD.Items)
+                    {
+                        if (aCertificado.ExisteCertificado(item.Trim()))
+                        {
+                            //Si el certificado existe, el encargado decide si guardar o no (falta agregar)
+                            MessageBox.Show("EL CERTIFICADO " + item.Trim() + " YA EXISTE, NO SE AGREGARÁ; LOS QUE NO EXISTAN SE AGREGARÁN", "RED NORTE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            aActaEntrega.RegistrarActaEntrega_CD(txtCodigoActa.Text, item.Trim(), estado);
+                            cantidad++;
+                        }
+
+                    }
+                    if (cantidad == 0)
+                    {
+                        MessageBox.Show("LOS CODIGOS YA EXISTEN, NO SE AGREGARÁN A LA BASE DE DATOS, NI SE CREARÁ EL ACTA DE ENTREGA", "RED NORTE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //this.Close();
+
+                    }
+                    else
+                    {
+                        aActaEntrega.RegistrarActaEntrega(txtCodigoActa.Text, dtpFecha.Value.ToString("dd-MM-yyyy"), dtpHora.Text, txtDocumentoEncargado.Text, txtNombresEncargado.Text, txtApellidosEncargado.Text, txtDocumentoPersonal.Text, txtNombresPersonal.Text, txtApellidosPersonal.Text, cboMicroRed.Text, cboEstablecimiento.Text);
+                        MessageBox.Show("REGISTRO EXITOSO, SE CREÓ EL ACTA: " + txtCodigoActa.Text, "RED NORTE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
                 }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("COMPLETE TODOS LOS CAMPOS");
+                MessageBox.Show("ERROR AL REALIZAR LA OPERACION", "RED NORTE", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

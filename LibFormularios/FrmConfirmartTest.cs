@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,7 +14,7 @@ namespace LibFormularios
 {
     public partial class FrmConfirmartTest : DevExpress.XtraEditors.XtraForm
     {
-        FrmActaEntrega actaEntrega = new FrmActaEntrega();
+
         public FrmConfirmartTest()
         {
             InitializeComponent();
@@ -26,7 +27,8 @@ namespace LibFormularios
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            actaEntrega.Grabar();
+            //EjecutarFuncion?.Invoke(CodigoActa, Fecha, Hora, DocumentoEncargado, DocumentoPersonal, MicroRed, Establecimiento);
+            this.Close();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
