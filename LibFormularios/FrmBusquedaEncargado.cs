@@ -72,7 +72,7 @@ namespace LibFormularios
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
         }
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
@@ -91,7 +91,7 @@ namespace LibFormularios
                 Apellidos = "";
             }
             //-- Cerrar formulario
-            Close();
+            this.Close();
         }
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConfirmartTest));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtCodigosCD = new System.Windows.Forms.TextBox();
@@ -39,9 +38,6 @@
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.dtpHora = new System.Windows.Forms.DateTimePicker();
             this.txtCodigoActa = new System.Windows.Forms.TextBox();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.btnGuardar = new DevExpress.XtraEditors.SimpleButton();
-            this.btnCancelar = new DevExpress.XtraEditors.SimpleButton();
             this.SuspendLayout();
             // 
             // textBox1
@@ -60,7 +56,7 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Myanmar Text", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(234, 35);
+            this.labelControl1.Location = new System.Drawing.Point(261, 35);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(188, 37);
             this.labelControl1.TabIndex = 1;
@@ -71,6 +67,7 @@
             this.txtCodigosCD.Location = new System.Drawing.Point(327, 151);
             this.txtCodigosCD.Multiline = true;
             this.txtCodigosCD.Name = "txtCodigosCD";
+            this.txtCodigosCD.ReadOnly = true;
             this.txtCodigosCD.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtCodigosCD.Size = new System.Drawing.Size(278, 52);
             this.txtCodigosCD.TabIndex = 2;
@@ -79,6 +76,7 @@
             // 
             this.txtMicroRed.Location = new System.Drawing.Point(327, 218);
             this.txtMicroRed.Name = "txtMicroRed";
+            this.txtMicroRed.ReadOnly = true;
             this.txtMicroRed.Size = new System.Drawing.Size(278, 21);
             this.txtMicroRed.TabIndex = 3;
             // 
@@ -86,6 +84,7 @@
             // 
             this.txtEstablecimiento.Location = new System.Drawing.Point(327, 259);
             this.txtEstablecimiento.Name = "txtEstablecimiento";
+            this.txtEstablecimiento.ReadOnly = true;
             this.txtEstablecimiento.Size = new System.Drawing.Size(278, 21);
             this.txtEstablecimiento.TabIndex = 4;
             // 
@@ -93,6 +92,7 @@
             // 
             this.txtEncargado.Location = new System.Drawing.Point(327, 376);
             this.txtEncargado.Name = "txtEncargado";
+            this.txtEncargado.ReadOnly = true;
             this.txtEncargado.Size = new System.Drawing.Size(278, 21);
             this.txtEncargado.TabIndex = 5;
             // 
@@ -100,11 +100,13 @@
             // 
             this.txtPersonalSalud.Location = new System.Drawing.Point(327, 414);
             this.txtPersonalSalud.Name = "txtPersonalSalud";
+            this.txtPersonalSalud.ReadOnly = true;
             this.txtPersonalSalud.Size = new System.Drawing.Size(278, 21);
             this.txtPersonalSalud.TabIndex = 6;
             // 
             // dtpFecha
             // 
+            this.dtpFecha.Enabled = false;
             this.dtpFecha.Location = new System.Drawing.Point(327, 301);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(278, 21);
@@ -112,6 +114,7 @@
             // 
             // dtpHora
             // 
+            this.dtpHora.Enabled = false;
             this.dtpHora.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpHora.Location = new System.Drawing.Point(327, 337);
             this.dtpHora.Name = "dtpHora";
@@ -120,49 +123,18 @@
             // 
             // txtCodigoActa
             // 
-            this.txtCodigoActa.Location = new System.Drawing.Point(181, 78);
+            this.txtCodigoActa.Location = new System.Drawing.Point(211, 78);
             this.txtCodigoActa.Name = "txtCodigoActa";
+            this.txtCodigoActa.ReadOnly = true;
             this.txtCodigoActa.Size = new System.Drawing.Size(278, 21);
             this.txtCodigoActa.TabIndex = 11;
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Myanmar Text", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(29, 484);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(248, 37);
-            this.labelControl2.TabIndex = 12;
-            this.labelControl2.Text = "¿Los datos son correctos?\r\n";
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
-            this.btnGuardar.Location = new System.Drawing.Point(327, 477);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(98, 50);
-            this.btnGuardar.TabIndex = 13;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton2.ImageOptions.SvgImage")));
-            this.btnCancelar.Location = new System.Drawing.Point(539, 477);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(98, 50);
-            this.btnCancelar.TabIndex = 14;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.txtCodigoActa.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // FrmConfirmartTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(753, 546);
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.labelControl2);
+            this.ClientSize = new System.Drawing.Size(667, 487);
             this.Controls.Add(this.txtCodigoActa);
             this.Controls.Add(this.dtpHora);
             this.Controls.Add(this.dtpFecha);
@@ -192,8 +164,5 @@
         public System.Windows.Forms.DateTimePicker dtpFecha;
         public System.Windows.Forms.DateTimePicker dtpHora;
         public System.Windows.Forms.TextBox txtCodigoActa;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.SimpleButton btnGuardar;
-        private DevExpress.XtraEditors.SimpleButton btnCancelar;
     }
 }

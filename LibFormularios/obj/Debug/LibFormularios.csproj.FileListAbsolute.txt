@@ -60,3 +60,4 @@ D:\Practica_C#\AppCertificadosDefuncion\LibFormularios\obj\Debug\LibFormularios.
 D:\Practica_C#\AppCertificadosDefuncion\LibFormularios\obj\Debug\LibFormularios.FrmConfirmartTest.resources
 D:\Practica_C#\AppCertificadosDefuncion\LibFormularios\obj\Debug\LibFormularios.FrmBusquedaEncargado.resources
 D:\Practica_C#\AppCertificadosDefuncion\LibFormularios\obj\Debug\LibFormularios.FrmBusquedaPersonal.resources
+D:\Practica_C#\AppCertificadosDefuncion\LibFormularios\obj\Debug\LibFormularios.FrmConfirmarActaRecepcion.resources

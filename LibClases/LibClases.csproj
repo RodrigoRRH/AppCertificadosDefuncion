@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CActaEntrega.cs" />
+    <Compile Include="CActaRecepcion.cs" />
     <Compile Include="CCertificado.cs" />
     <Compile Include="CConexion.cs" />
     <Compile Include="CEntidad.cs" />

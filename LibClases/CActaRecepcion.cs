@@ -1,47 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace LibClases
 {
-    public class CActaEntrega : CEntidad
+    public class CActaRecepcion : CEntidad
     {
         //=============== ATRIBUTOS =======================
         //-- Todos heredados de CEntidad ----
         //================ METODOS ========================
         //-------------- Constructores --------------------
-        public CActaEntrega() : base("Acta_Entrega")
+        public CActaRecepcion() : base("Acta_Recepcion")
         {
         }
         //------ Implementación de metodos abstractos -----
         public override string[] NombresAtributos()
         {
-            return new string[] { "CodActaEntrega", "Fecha", "Hora", "Documento_Encargado", "Nombres_Encargado", "Apellidos_Encargado", "Documento_Personal", "Nombres_Personal", "Apellidos_Personal", "MicroRed", "Establecimiento" };
+            return new string[] { "CodActaRecepcion", "Fecha", "Hora", "Documento_Encargado", "Nombres_Encargado", "Apellidos_Encargado", "Documento_Personal", "Nombres_Personal", "Apellidos_Personal", "MicroRed", "Establecimiento" };
         }
 
-        // -- insertar(guardar) Acta Entrega en la BD
-        public void RegistrarActaEntrega(string CodActaEntrega, string Fecha, string Hora, string Documento_Encargado, string Nombres_Encargado, string Apellidos_Encargado, string Documento_Personal, string Nombres_Personal, string Apellidos_Personal, string MicroRed, string Establecimiento)
+        // -- insertar(guardar) Acta Recepcion en la BD
+        public void RegistrarActaRecepcion(string CodActaRecepcion, string Fecha, string Hora, string Documento_Encargado, string Nombres_Encargado, string Apellidos_Encargado, string Documento_Personal, string Nombres_Personal, string Apellidos_Personal, string MicroRed, string Establecimiento)
         {
-            string Consulta = "insert into Acta_Entrega values('" + CodActaEntrega + "', '" + Fecha + "', '" + Hora + "','" + Documento_Encargado + "','" + Nombres_Encargado + "','" + Apellidos_Encargado + "','" + Documento_Personal + "','" + Nombres_Personal + "','" + Apellidos_Personal + "','" + MicroRed + "', '" + Establecimiento + "')";
+            string Consulta = "insert into Acta_Recepcion values('" + CodActaRecepcion + "', '" + Fecha + "', '" + Hora + "','" + Documento_Encargado + "','" + Nombres_Encargado + "','" + Apellidos_Encargado + "','" + Documento_Personal + "','" + Nombres_Personal + "','" + Apellidos_Personal + "','" + MicroRed + "', '" + Establecimiento + "')";
             aConexion.EjecutarComando(Consulta);
         }
 
-        // -- insertar(guardar) las relaciones de Acta_Entrega con los Certificados de Defuncion en la BD, tabla ActaEntrega_CD
-        public void RegistrarActaEntrega_CD(string CodActaEntrega, string CodCertificadoDefuncion, string Estado)
+        // -- insertar(guardar) las relaciones de Acta_Recepcion con los Certificados de Defuncion en la BD, tabla ActaRecepcion_CD
+        public void RegistrarActaRecepcion_CD(string CodActaRecepcion, string CodCertificadoDefuncion, string Estado)
         {
-            string Consulta = "insert into ActaEntrega_CD values('" + CodActaEntrega + "','" + CodCertificadoDefuncion + "', '" + Estado + "')";
+            string Consulta = "insert into ActaRecepcion_CD values('" + CodActaRecepcion + "','" + CodCertificadoDefuncion + "', '" + Estado + "')";
             aConexion.EjecutarComando(Consulta);
         }
 
-        // -- Mostrar los registros de Acta Entrega
-        public DataTable MostrarActasEntrega()
+        // -- Mostrar los registros de Acta Recepcion
+        public DataTable MostrarActasRecepcion()
         {
-            string Consulta = "select * from Acta_Entrega";
+            string Consulta = "select * from Acta_Recepcion";
             aConexion.EjecutarSelect(Consulta);
             return aConexion.Datos.Tables[0];
         }
@@ -49,7 +47,7 @@ namespace LibClases
         // -- Cambiar estado si un Certificado de Defuncion fue devuelto, en la tabla ActaEntrega_CD( donde se tienen las relaciones de Acta_Entrega con los Certificados de Defuncion en la BD)
         public void CambiarEstadoFinalizado(string CodCertificadoDefuncion)
         {
-            string Consulta = "UPDATE ActaEntrega_CD SET Estado = 'FINALIZADO' WHERE CodCertificadoDefuncion='" + CodCertificadoDefuncion + "' ";
+            string Consulta = "UPDATE ActaEntrega_CD SET Estado = 'FINALIZADO, DEVUELTO' WHERE CodCertificadoDefuncion='" + CodCertificadoDefuncion + "' ";
             aConexion.EjecutarComando(Consulta);
         }
 
@@ -61,9 +59,10 @@ namespace LibClases
             return aConexion.Datos.Tables[0];
         }
 
+        // -- ********************************************************************************* --
         // -- Funcion para generar un codigo autonumerico de la forma "ACT-ENT-2023-001-001"
-        //------------------------------------------------------
-        public string GenerarCodigoActaEntrega()
+        // -- ********************************************************************************* --
+        public string GenerarCodigoActaRecepcion()
         {
             // Obtener el último código generado
             string ultimoCodigo = obtenerUltimoCodigo();
@@ -73,7 +72,7 @@ namespace LibClases
             int anio = int.Parse(partes[2]);
             string serie = partes[3];
             int correlativo = int.Parse(partes[4]);
-            
+
 
             // Verificar si el año actual es diferente al año del último código generado
             if (anio != DateTime.Now.Year)
@@ -93,7 +92,7 @@ namespace LibClases
             }
 
             // Concatenar los valores de serie, correlativo y año en el formato deseado
-            string nuevoCodigo = string.Format("ACT-ENT-{0}-{1}-{2:D3}",anio, serie, correlativo);
+            string nuevoCodigo = string.Format("ACT-REC-{0}-{1}-{2:D3}", anio, serie, correlativo);
 
             return nuevoCodigo;
         }
@@ -107,24 +106,26 @@ namespace LibClases
 
         private string obtenerUltimoCodigo()
         {
-            // Recuperamos el ultimo codigo de la tabla "Acta_Entrega" de la base de datos
+            // Recuperamos el ultimo codigo de la tabla "Acta_Recepcion" de la base de datos
             // Para ello hacemos uso del store procedure
-            // 1 : Ultimo código de la Acta_Entrega
+            // 2 : Ultimo código de la Acta_Recepcion
 
-            string UltimoCodigo = aConexion.SP_Recuperar_MaxCodActa("sp_Recuperar_UltimaActa", 1);
+            string UltimoCodigo = aConexion.SP_Recuperar_MaxCodActa("sp_Recuperar_UltimaActa", 2);
 
-            if(UltimoCodigo == "")
+            if (UltimoCodigo == "")
             {
                 //En caso de que nuestra tabla este vacía pasamos por defecto "ACT-ENT-Año.Actual-001-000"
-                string nuevoCodigo = string.Format("ACT-ENT-{0}-001-000", DateTime.Now.Year); 
+                string nuevoCodigo = string.Format("ACT-REC-{0}-001-000", DateTime.Now.Year);
                 return nuevoCodigo;
             }
             else
             {
-                return  UltimoCodigo;
-            }          
+                return UltimoCodigo;
+            }
         }
-        
+
+        // -- ********************************************************************************* --
+
         //Generar codigos consecutivos dado un rango, ejemplo:  rango(0011010;0011015) resultado: 0011010, 0011011, 0011012, 0011013, 0011014 y 0011015; otro ejemplo: rango(2011001;2011003) resultado: 2011001, 2011002 y 2011003; en C# windows forms
 
     }
