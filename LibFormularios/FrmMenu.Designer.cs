@@ -32,6 +32,8 @@
             this.cntInicio = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.itmCargarDatos = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.itmActaEntrega2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.itmActaRecepcion = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             this.fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
             this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -40,8 +42,7 @@
             this.accordionControlElement6 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement7 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.itmActaEntrega = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.itmActaRecepcion = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.itmActaEntrega2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.itmCertificadoDefuncion = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentFormDefaultManager1)).BeginInit();
@@ -62,7 +63,8 @@
             this.accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.itmCargarDatos,
             this.itmActaEntrega2,
-            this.itmActaRecepcion});
+            this.itmActaRecepcion,
+            this.itmCertificadoDefuncion});
             this.accordionControl1.Location = new System.Drawing.Point(0, 31);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
@@ -83,6 +85,29 @@
             this.itmCargarDatos.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.itmCargarDatos.Text = "Cargar Datos";
             this.itmCargarDatos.Click += new System.EventHandler(this.itmCargarDatos_Click);
+            // 
+            // itmActaEntrega2
+            // 
+            this.itmActaEntrega2.Appearance.Default.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.itmActaEntrega2.Appearance.Default.Options.UseFont = true;
+            this.itmActaEntrega2.Name = "itmActaEntrega2";
+            this.itmActaEntrega2.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.itmActaEntrega2.Text = "Acta Entrega";
+            this.itmActaEntrega2.Click += new System.EventHandler(this.itmActaEntrega2_Click);
+            // 
+            // itmActaRecepcion
+            // 
+            this.itmActaRecepcion.Appearance.Default.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.itmActaRecepcion.Appearance.Default.Options.UseFont = true;
+            this.itmActaRecepcion.HeaderTemplate.AddRange(new DevExpress.XtraBars.Navigation.HeaderElementInfo[] {
+            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Image),
+            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Text),
+            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons),
+            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl)});
+            this.itmActaRecepcion.Name = "itmActaRecepcion";
+            this.itmActaRecepcion.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.itmActaRecepcion.Text = "Acta Recepcion";
+            this.itmActaRecepcion.Click += new System.EventHandler(this.itmActaRecepcion_Click);
             // 
             // fluentDesignFormControl1
             // 
@@ -132,28 +157,13 @@
             this.itmActaEntrega.Text = "Acta de Entrega";
             this.itmActaEntrega.Click += new System.EventHandler(this.itmActaEntrega_Click);
             // 
-            // itmActaRecepcion
+            // itmCertificadoDefuncion
             // 
-            this.itmActaRecepcion.Appearance.Default.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.itmActaRecepcion.Appearance.Default.Options.UseFont = true;
-            this.itmActaRecepcion.HeaderTemplate.AddRange(new DevExpress.XtraBars.Navigation.HeaderElementInfo[] {
-            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Image),
-            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Text),
-            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons),
-            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl)});
-            this.itmActaRecepcion.Name = "itmActaRecepcion";
-            this.itmActaRecepcion.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.itmActaRecepcion.Text = "Acta Recepcion";
-            this.itmActaRecepcion.Click += new System.EventHandler(this.itmActaRecepcion_Click);
-            // 
-            // itmActaEntrega2
-            // 
-            this.itmActaEntrega2.Appearance.Default.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.itmActaEntrega2.Appearance.Default.Options.UseFont = true;
-            this.itmActaEntrega2.Name = "itmActaEntrega2";
-            this.itmActaEntrega2.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.itmActaEntrega2.Text = "Acta Entrega";
-            this.itmActaEntrega2.Click += new System.EventHandler(this.itmActaEntrega2_Click);
+            this.itmCertificadoDefuncion.Appearance.Default.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.itmCertificadoDefuncion.Appearance.Default.Options.UseFont = true;
+            this.itmCertificadoDefuncion.Name = "itmCertificadoDefuncion";
+            this.itmCertificadoDefuncion.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.itmCertificadoDefuncion.Text = "Certificado Defuncion";
             // 
             // FrmMenu
             // 
@@ -193,5 +203,6 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement itmActaEntrega;
         private DevExpress.XtraBars.Navigation.AccordionControlElement itmActaRecepcion;
         private DevExpress.XtraBars.Navigation.AccordionControlElement itmActaEntrega2;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement itmCertificadoDefuncion;
     }
 }

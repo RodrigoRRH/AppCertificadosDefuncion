@@ -4,3 +4,9 @@ D:\Practica_C#\AppCertificadosDefuncion\LibClases\obj\Debug\LibClases.csproj.Ass
 D:\Practica_C#\AppCertificadosDefuncion\LibClases\obj\Debug\LibClases.csproj.CoreCompileInputs.cache
 D:\Practica_C#\AppCertificadosDefuncion\LibClases\obj\Debug\LibClases.dll
 D:\Practica_C#\AppCertificadosDefuncion\LibClases\obj\Debug\LibClases.pdb
+D:\ProyectosVS\AppCertificadosDefuncion\LibClases\bin\Debug\LibClases.dll
+D:\ProyectosVS\AppCertificadosDefuncion\LibClases\bin\Debug\LibClases.pdb
+D:\ProyectosVS\AppCertificadosDefuncion\LibClases\obj\Debug\LibClases.csproj.AssemblyReference.cache
+D:\ProyectosVS\AppCertificadosDefuncion\LibClases\obj\Debug\LibClases.csproj.CoreCompileInputs.cache
+D:\ProyectosVS\AppCertificadosDefuncion\LibClases\obj\Debug\LibClases.dll
+D:\ProyectosVS\AppCertificadosDefuncion\LibClases\obj\Debug\LibClases.pdb

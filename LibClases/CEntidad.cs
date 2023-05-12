@@ -14,13 +14,14 @@ namespace LibClases
         // ============================ Atributos ==============================
         protected CConexion aConexion;
         private string aNombreTabla;
-        string[] aNombres = null; //-- nombres de los campos de la tabla
+        string[] aNombres = null; //-- Nombres de los campos de la tabla
         string[] aValores = null; //-- valores de los campos de la tabla
         private bool aNuevo;
         // =========================== Metodos ==================================
         // ---------------------- Constructores ---------------------------------
         public CEntidad(string pNombreTabla)
-        { // inicializar los atributos
+        { 
+            // Inicializar los atributos
             aNuevo = true;
             aNombreTabla = pNombreTabla;
             aConexion = new CConexion();
