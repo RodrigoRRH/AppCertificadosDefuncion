@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCertificadosDefuncion", "AppCertificadosDefuncion\AppCertificadosDefuncion.csproj", "{35774900-84A2-47C1-854D-F5420C8B5179}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3F260A16-B0DB-4651-BAC9-C1132AC8E73B} = {3F260A16-B0DB-4651-BAC9-C1132AC8E73B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibClases", "LibClases\LibClases.csproj", "{3F260A16-B0DB-4651-BAC9-C1132AC8E73B}"
 EndProject

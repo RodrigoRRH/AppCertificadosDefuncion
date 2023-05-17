@@ -70,6 +70,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.bgwListaPersonal = new System.ComponentModel.BackgroundWorker();
+            this.bgwListaPSalud = new System.ComponentModel.BackgroundWorker();
             this.panTop.SuspendLayout();
             this.panCenter.SuspendLayout();
             this.panRight.SuspendLayout();
@@ -82,11 +84,15 @@
             // btnGuardar
             // 
             this.btnGuardar.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnGuardar.ImageOptions.SvgImage")));
+            this.btnGuardar.Location = new System.Drawing.Point(0, 76);
+            this.btnGuardar.Size = new System.Drawing.Size(130, 70);
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnNuevo
             // 
             this.btnNuevo.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNuevo.ImageOptions.SvgImage")));
+            this.btnNuevo.Location = new System.Drawing.Point(0, 182);
+            this.btnNuevo.Visible = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // panTop
@@ -246,9 +252,10 @@
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(18, 323);
+            this.btnTest.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnTest.ImageOptions.SvgImage")));
+            this.btnTest.Location = new System.Drawing.Point(0, 298);
             this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(100, 60);
+            this.btnTest.Size = new System.Drawing.Size(130, 70);
             this.btnTest.TabIndex = 8;
             this.btnTest.Text = "Vista Previa \r\nDel Acta";
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
@@ -507,13 +514,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Lugar";
             // 
+            // bgwListaPersonal
+            // 
+            this.bgwListaPersonal.WorkerReportsProgress = true;
+            this.bgwListaPersonal.WorkerSupportsCancellation = true;
+            this.bgwListaPersonal.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwListaPersonal_DoWork);
+            this.bgwListaPersonal.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgwListaPersonal_ProgressChanged);
+            this.bgwListaPersonal.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwListaPersonal_RunWorkerCompleted);
+            // 
+            // bgwListaPSalud
+            // 
+            this.bgwListaPSalud.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwListaPSalud_DoWork);
+            this.bgwListaPSalud.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwListaPSalud_RunWorkerCompleted);
+            // 
             // FrmActaEntrega
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 646);
             this.Name = "FrmActaEntrega";
-            this.Text = "FrmActaEntrega";
+            this.Text = "ACTA DE ENTREGA";
             this.panTop.ResumeLayout(false);
             this.panCenter.ResumeLayout(false);
             this.panCenter.PerformLayout();
@@ -573,5 +593,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.ComponentModel.BackgroundWorker bgwListaPersonal;
+        private System.ComponentModel.BackgroundWorker bgwListaPSalud;
     }
 }

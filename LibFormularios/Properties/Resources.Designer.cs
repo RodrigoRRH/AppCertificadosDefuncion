@@ -83,6 +83,16 @@ namespace LibFormularios.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap nulo {
+            get {
+                object obj = ResourceManager.GetObject("nulo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap RedNorte {
             get {
                 object obj = ResourceManager.GetObject("RedNorte", resourceCulture);

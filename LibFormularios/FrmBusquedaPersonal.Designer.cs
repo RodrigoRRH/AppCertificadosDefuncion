@@ -98,7 +98,7 @@
             this.btnCancelar.Size = new System.Drawing.Size(139, 42);
             this.btnCancelar.TabIndex = 0;
             this.btnCancelar.Text = "CANCELAR";
-            this.btnCancelar.Click += new System.EventHandler(this.btnSeleccionar_Click);
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // panel2
             // 
@@ -187,7 +187,8 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Name = "FrmBusquedaPersonal";
-            this.Text = "FrmBusquedaPersonal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "BUSQUEDA PERSONAL";
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -209,6 +210,6 @@
         private System.Windows.Forms.ComboBox cboBusqueda;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private System.Windows.Forms.DataGridView dgvPersonal;
+        public System.Windows.Forms.DataGridView dgvPersonal;
     }
 }

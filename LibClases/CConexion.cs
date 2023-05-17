@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
+using System.IO;
 
 namespace LibClases
 {
@@ -174,5 +176,99 @@ namespace LibClases
             aAdaptador.Fill(aDatos);
             return aDatos;
         }
+
+        // -- Metodo para actualizar un certificado de defuncion
+        public string SP_EditarCD(string sp, string CodCD, string DocumentoPac, string Nombres, string Apellidos, byte[] imagen)
+        {
+            string resultado;
+            aAdaptador.SelectCommand = new SqlCommand(sp, aConexion)
+            {
+                CommandType = CommandType.StoredProcedure,
+                CommandTimeout = 1000
+            };
+            aAdaptador.SelectCommand.Parameters.Add("@CodCD", SqlDbType.VarChar).Value = CodCD;
+            aAdaptador.SelectCommand.Parameters.Add("@DocumentoPac", SqlDbType.VarChar).Value = DocumentoPac;
+            aAdaptador.SelectCommand.Parameters.Add("@Nombres", SqlDbType.VarChar).Value = Nombres;
+            aAdaptador.SelectCommand.Parameters.Add("@Apellidos", SqlDbType.VarChar).Value = Apellidos;
+            aAdaptador.SelectCommand.Parameters.Add("@Imagen", SqlDbType.VarBinary).Value = imagen;
+
+            aConexion.Open();
+            SqlDataReader registro = aAdaptador.SelectCommand.ExecuteReader();
+            if (registro.Read())
+            {
+                resultado = registro["Mensaje"].ToString();
+            }
+            else
+            {
+                resultado = registro["Mensaje"].ToString();
+            }
+            aConexion.Close();
+
+            return resultado;
+
+        }
+
+        // -- Metodo para actualizar un certificado de defuncion pero no la imagen
+        public string SP_EditarCD_SinImagen(string sp, string CodCD, string DocumentoPac, string Nombres, string Apellidos)
+        {
+            string resultado;
+            aAdaptador.SelectCommand = new SqlCommand(sp, aConexion)
+            {
+                CommandType = CommandType.StoredProcedure,
+                CommandTimeout = 1000
+            };
+            aAdaptador.SelectCommand.Parameters.Add("@CodCD", SqlDbType.VarChar).Value = CodCD;
+            aAdaptador.SelectCommand.Parameters.Add("@DocumentoPac", SqlDbType.VarChar).Value = DocumentoPac;
+            aAdaptador.SelectCommand.Parameters.Add("@Nombres", SqlDbType.VarChar).Value = Nombres;
+            aAdaptador.SelectCommand.Parameters.Add("@Apellidos", SqlDbType.VarChar).Value = Apellidos;
+
+            aConexion.Open();
+            SqlDataReader registro = aAdaptador.SelectCommand.ExecuteReader();
+            if (registro.Read())
+            {
+                resultado = registro["Mensaje"].ToString();
+            }
+            else
+            {
+                resultado = registro["Mensaje"].ToString();
+            }
+            aConexion.Close();
+
+            return resultado;
+
+        }
+
+
+        // -- Metodo para listar los certificados de defuncion
+        public DataTable ListaCD()
+        {
+            string Consulta = "select CodCertificadoDefuncion as 'Código Certificado', Documento_Paciente as 'Documento', Nombres, Apellidos from CertificadoDefuncion";
+            EjecutarSelect(Consulta);
+            return Datos.Tables[0];
+        }
+
+        public byte[] recuperarImagen(string Codigo)
+        {
+            byte[] resultado = new byte[] { };
+            string sqlQuery = "SELECT ImagenCertificado from CertificadoDefuncion WHERE CodCertificadoDefuncion = @CodCD";
+
+            aAdaptador.SelectCommand = new SqlCommand(sqlQuery, aConexion);
+            aAdaptador.SelectCommand.Parameters.AddWithValue("@CodCD", Codigo);
+            aAdaptador.SelectCommand.CommandTimeout = 1000;
+
+            aConexion.Open();
+            SqlDataReader reader = aAdaptador.SelectCommand.ExecuteReader();
+
+            if (reader.Read())
+            {
+                resultado = (byte[])reader["ImagenCertificado"];
+                return resultado;
+            }
+  
+            aConexion.Close();
+
+            return resultado;
+        }
+
     }
 }

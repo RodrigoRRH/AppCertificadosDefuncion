@@ -146,7 +146,8 @@
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.textBox1);
             this.Name = "FrmConfirmartTest";
-            this.Text = "FrmConfirmartTest";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "VISTA PREVIA DEL ACTA";
             this.ResumeLayout(false);
             this.PerformLayout();
 

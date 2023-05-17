@@ -145,7 +145,7 @@
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.textBox1);
             this.Name = "FrmConfirmarActaRecepcion";
-            this.Text = "FrmConfirmarActaRecepcion";
+            this.Text = "VISTA PREVIA DEL ACTA";
             this.ResumeLayout(false);
             this.PerformLayout();
 

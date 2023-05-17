@@ -82,11 +82,15 @@
             // btnGuardar
             // 
             this.btnGuardar.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnGuardar.ImageOptions.SvgImage")));
+            this.btnGuardar.Location = new System.Drawing.Point(0, 101);
+            this.btnGuardar.Size = new System.Drawing.Size(130, 70);
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnNuevo
             // 
             this.btnNuevo.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNuevo.ImageOptions.SvgImage")));
+            this.btnNuevo.Location = new System.Drawing.Point(0, 228);
+            this.btnNuevo.Visible = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // panTop
@@ -96,7 +100,7 @@
             // lblTitulo
             // 
             this.lblTitulo.Size = new System.Drawing.Size(933, 70);
-            this.lblTitulo.Text = "ACTA DE RECEPCION";
+            this.lblTitulo.Text = "ACTA DE RECEPCIÓN";
             // 
             // panCenter
             // 
@@ -500,9 +504,10 @@
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(18, 319);
+            this.btnTest.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnTest.ImageOptions.SvgImage")));
+            this.btnTest.Location = new System.Drawing.Point(0, 351);
             this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(100, 60);
+            this.btnTest.Size = new System.Drawing.Size(130, 70);
             this.btnTest.TabIndex = 9;
             this.btnTest.Text = "Vista Previa \r\nDel Acta";
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
@@ -513,7 +518,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(933, 610);
             this.Name = "FrmActaRecepcion";
-            this.Text = "FrmActaRecepcion";
+            this.Text = "ACTA DE RECEPCION";
             this.panTop.ResumeLayout(false);
             this.panCenter.ResumeLayout(false);
             this.panCenter.PerformLayout();

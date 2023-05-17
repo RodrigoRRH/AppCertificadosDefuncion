@@ -125,5 +125,15 @@ namespace LibFormularios
         {
             AbrirFormulario(new FrmActaEntrega());
         }
+
+        private void itmCertificadoDefuncion_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(new FrmCertificadosDefuncion());
+        }
+
+        private void itmReportes_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(new FrmReportes());
+        }
     }
 }

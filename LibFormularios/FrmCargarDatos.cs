@@ -23,64 +23,6 @@ namespace LibFormularios
             //CargarResumen();
         }
 
-        private void btnAbrirArchivo_Click(object sender, EventArgs e)
-        {
-            string RutaArchivo = string.Empty;
-            OpenFileDialog ofd = new OpenFileDialog();
-
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                RutaArchivo = ofd.FileName;
-            }
-
-            txtRutaArchivo.Text = RutaArchivo;
-        }
-
-        private void btnCargarArchivoBD_Click(object sender, EventArgs e)
-        {
-            if (txtRutaArchivo.Text is null)
-            {
-                aConexion.MostrarMensajeOK("No hay ruta, escoga una", "RED NORTE - ESTADISTICA");
-            }
-            else
-            {
-                if (!bgWorker_CargaArchivo.IsBusy)
-                {
-                    bgWorker_CargaArchivo.RunWorkerAsync();
-                }
-                else
-                {
-                    aConexion.MostrarMensajeOK("Se está cargando el archivo... ", "ALERTA!");
-                }
-            }
-            
-        }
-
-        private void btnLimpiarBD_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string mensaje = "Seguro que quiere borrar las tablas de la BD!";
-                string titulo = "¡ALERTA!";
-                MessageBoxButtons botones = MessageBoxButtons.YesNo;
-                DialogResult resultado;
-
-                resultado = MessageBox.Show(this, mensaje, titulo, botones, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-
-                if (resultado == DialogResult.Yes)
-                {
-                    string msgBorrado = aConexion.SP_Mensaje("sp_limpiar_datos");
-                    aConexion.MostrarMensajeOK(msgBorrado, "RED NORTE - ESTADISTICA");
-                    CargarResumen();
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
         public void CargarResumen()
         {
             dgvResumenPersonas.DataSource = aConexion.EjecutarSelect("sp_ResumenPersonas").Tables[0];
@@ -141,8 +83,80 @@ namespace LibFormularios
         }
         // ---------------------------------------------------------------------------------
 
-        // -- Evento de click al boton mostrar resumen
-        private void btnMostrarResumen_Click(object sender, EventArgs e)
+        private void btnLimpiarBaseDatos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string mensaje = "Seguro que quiere borrar las tablas de la BD!";
+                string titulo = "¡ALERTA!";
+                MessageBoxButtons botones = MessageBoxButtons.YesNo;
+                DialogResult resultado;
+
+                resultado = MessageBox.Show(this, mensaje, titulo, botones, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    string msgBorrado = aConexion.SP_Mensaje("sp_limpiar_datos");
+                    aConexion.MostrarMensajeOK(msgBorrado, "RED NORTE - ESTADISTICA");
+                    CargarResumen();
+                }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Error", "ALERTA!");
+            }
+        }
+        
+
+        // -- Hilo para mostrar el resumen
+        private void bgWorker_Resumen_DoWork(object sender, DoWorkEventArgs e)
+        {
+            dt = aConexion.EjecutarSelect("sp_ResumenPersonas").Tables[0];
+        }
+
+        private void btnArchivo_Click(object sender, EventArgs e)
+        {
+            string RutaArchivo = string.Empty;
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                RutaArchivo = ofd.FileName;
+            }
+
+            txtRutaArchivo.Text = RutaArchivo;
+        }
+
+        private void btnCargar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtRutaArchivo.Text is null || txtRutaArchivo.Text == "")
+                {
+                    aConexion.MostrarMensajeOK("No hay ruta, escoga una", "RED NORTE - ESTADISTICA");
+                }
+                else
+                {
+                    if (!bgWorker_CargaArchivo.IsBusy)
+                    {
+                        bgWorker_CargaArchivo.RunWorkerAsync();
+                    }
+                    else
+                    {
+                        aConexion.MostrarMensajeOK("Se está cargando el archivo... ", "ALERTA!");
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Error", "RED NORTE - ESTADISTICA");
+            }
+
+        }
+
+        private void btnResumen_Click(object sender, EventArgs e)
         {
             if (!bgWorker_Resumen.IsBusy)
             {
@@ -150,17 +164,8 @@ namespace LibFormularios
             }
             else
             {
-                aConexion.MostrarMensajeOK("Se está cargando la tabla de resumen... ", "ALERTA!");
+                aConexion.MostrarMensajeOK("Espere por favor... ", "ALERTA!");
             }
-            //CargarResumen();
-        }
-
-        
-
-        // -- Hilo para mostrar el resumen
-        private void bgWorker_Resumen_DoWork(object sender, DoWorkEventArgs e)
-        {
-            dt = aConexion.EjecutarSelect("sp_ResumenPersonas").Tables[0];
         }
 
         private void bgWorker_Resumen_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

@@ -22,6 +22,8 @@ namespace LibFormularios
 
         DataTable dt = new DataTable();
         DataTable dt1 = new DataTable();
+        DataTable datosPersonal = new DataTable();
+        DataTable datosPSalud = new DataTable();
         public FrmActaEntrega()
         {
             InitializeComponent();
@@ -194,6 +196,16 @@ namespace LibFormularios
 
         private void btnBuscarEncargado_Click(object sender, EventArgs e)
         {
+            //if (!bgwListaPersonal.IsBusy)
+            //{
+            //    //dgvFiltro.Columns.Clear();
+            //    bgwListaPersonal.RunWorkerAsync();
+            //}
+            //else
+            //{
+            //    aConexion.MostrarMensajeOK("Espere... ", "ALERTA!");
+            //}
+
             FrmBusquedaEncargado busquedaEncargado = new FrmBusquedaEncargado(aActaEntrega.MostrarPersonal());
             busquedaEncargado.ShowDialog();
 
@@ -208,6 +220,16 @@ namespace LibFormularios
 
         private void btnBuscarPersonal_Click(object sender, EventArgs e)
         {
+            //if (!bgwListaPSalud.IsBusy)
+            //{
+            //    //dgvFiltro.Columns.Clear();
+            //    bgwListaPSalud.RunWorkerAsync();
+            //}
+            //else
+            //{
+            //    aConexion.MostrarMensajeOK("Espere... ", "ALERTA!");
+            //}
+
             FrmBusquedaPersonal busquedaPersonal = new FrmBusquedaPersonal(aActaEntrega.MostrarPersonal());
             busquedaPersonal.ShowDialog();
 
@@ -431,14 +453,64 @@ namespace LibFormularios
             }
         }
 
-        public void aea(DateTime dt)
-        {
-            dt = dtpFecha.Value;
-        }
 
         private void label5_Click(object sender, EventArgs e)
         {
 
         }
+
+        // Crear hilo para recuperar la lista del personal encargado
+        private void bgwListaPersonal_DoWork(object sender, DoWorkEventArgs e)
+        {
+            datosPersonal = aActaEntrega.MostrarPersonal();
+        }
+
+        private void bgwListaPersonal_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            FrmBusquedaEncargado busquedaEncargado = new FrmBusquedaEncargado(datosPersonal);
+            busquedaEncargado.ShowDialog();
+
+            //-- Consulta valor devuelto
+            if (busquedaEncargado.Numero_Documento != "")
+            {
+                txtDocumentoEncargado.Text = busquedaEncargado.Numero_Documento;
+                txtNombresEncargado.Text = busquedaEncargado.Nombres;
+                txtApellidosEncargado.Text = busquedaEncargado.Apellidos;
+            }
+        }
+
+        private void bgwListaPersonal_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            MessageBox.Show("Procesando...espere porfavor", "Mensaje");
+        }
+
+        // Crear hilo para recuperar la lista del personal de salud
+        private void bgwListaPSalud_DoWork(object sender, DoWorkEventArgs e)
+        {
+            datosPSalud = aActaEntrega.MostrarPersonal();
+        }
+
+        private void bgwListaPSalud_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled == true)
+            {
+                MessageBox.Show("Cancelado", "ALERTA!");
+            }
+            else
+            {
+                FrmBusquedaPersonal busquedaPersonal = new FrmBusquedaPersonal(datosPSalud);
+                busquedaPersonal.ShowDialog();
+
+                //-- Consulta valor devuelto
+                if (busquedaPersonal.Numero_Documento != "")
+                {
+                    txtDocumentoEncargado.Text = busquedaPersonal.Numero_Documento;
+                    txtNombresEncargado.Text = busquedaPersonal.Nombres;
+                    txtApellidosEncargado.Text = busquedaPersonal.Apellidos;
+                }
+            }
+        }
+
+        
     }
 }

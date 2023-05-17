@@ -14,7 +14,8 @@ namespace LibFormularios
 {
     public partial class FrmBusquedaPersonal : DevExpress.XtraEditors.XtraForm
     {
-        private DataView aDatos;
+        public DataView aDatos;
+
         public FrmBusquedaPersonal(DataTable Datos)
         {
             InitializeComponent();

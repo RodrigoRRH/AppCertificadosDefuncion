@@ -18,6 +18,7 @@ namespace LibFormularios
         public FrmConfirmartTest()
         {
             InitializeComponent();
+            txtCodigoActa.Focus();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
